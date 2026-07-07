@@ -1,6 +1,8 @@
 #ifndef FIGHTER_H
 #define FIGHTER_H
+#include <vector>
 #include <iostream>
+
 class Fighter 
 {
     public:
@@ -11,7 +13,7 @@ class Fighter
     int Wins = 0;
     int Losses = 0;
 };
-
+extern std::vector<Fighter> roster;
 void CreateRoster();
 void ViewRoster();
 #endif

@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "Fighter.h"
+#include "fightnight.h"
 #include <iostream>
 
 void menu()
@@ -10,7 +11,7 @@ void menu()
     while (true)
     {
         std::cout<<"1. View Roster"<<std::endl;
-        std::cout<<"2. Simulate Fight"<<std::endl;
+        std::cout<<"2. Fight Night"<<std::endl;
         std::cout<<"3. Exit"<<std::endl;
         std::cout<<"\n";
         std::cout<<"Choice: ";
@@ -23,7 +24,7 @@ void menu()
             break;
 
         case 2:
-            std::cout<<"\nComing soon\n\n";
+            FightNight();
             break;
         
         case 3:
