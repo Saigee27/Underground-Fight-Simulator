@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Fighter.h"
+#include "menu.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -23,6 +24,7 @@ int main()
     Show();
     std::cout<<"\nENTER YOUR FIRST 4 FIGHTERS\n";
     CreateRoster();
-    ViewRoster();
+    
+    menu();
     
 }
