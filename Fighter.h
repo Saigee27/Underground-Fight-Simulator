@@ -5,10 +5,11 @@ class Fighter
 {
     public:
     std::string Name;
-    int Strength;
-    int Stamina;
-    int Toughness;
-    
+    int Strength=0;
+    int Stamina=0;
+    int Toughness=0;
+    int Wins = 0;
+    int Losses = 0;
 };
 
 void CreateRoster();
