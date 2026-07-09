@@ -11,10 +11,11 @@ void menu()
     std::cout<<"\n\n";
     std::cout<<"Balance: $"<<Money<<std::endl;
     int p=0;
-    std::cout<<"\n ===== THE PIT ===== \n";
+    std::cout<<"\n ===== THE PIT ===== \n\n";
 
     while (true)
     {
+        std::cout<<"\n";
         std::cout<<"1. View Roster"<<std::endl;
         std::cout<<"2. Fight Night"<<std::endl;
         std::cout<<"3. Exit"<<std::endl;

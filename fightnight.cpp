@@ -48,13 +48,14 @@ void FightNight()
     std::cout << "Place your bet:\n";
     std::cout << "1. " << f1.Name << "\n";
     std::cout << "2. " << f2.Name << "\n";
+    std::cout<<"\n";
     std::cout<<"Choice: ";
     std::cin>>betchoice;
 
     int betamount=0;
     std::cout << "Bet Amount: $";
     std::cin>>betamount;
-
+    std::cout<<"\n";
     if (betamount > Money)
 {
     std::cout << "Insufficient Funds!\n";
@@ -74,8 +75,23 @@ if (betamount <= 0)
     }
     else
     {
-        chosenfighter=&f2;
+        chosenfighter = &f2;
     }
+
+
+    std::string Finishes[]
+    {
+        "Knockout",
+        "Technical Knockout",
+        "Rear Naked Choke",
+        "Guillotine Submission",
+        "Armbar Submission",
+        "Split Decision",
+        "Unanimous Decision"
+    };
+
+    int F=rand()%7;
+    std::string Finish = Finishes[F];
 
 
     Fighter* winner;
@@ -85,6 +101,7 @@ if (betamount <= 0)
         std::cout << "Winner: "
           << f1.Name
           << "\n";
+        std::cout<<"Finish: "<<Finish<<"\n";
         f1.Wins++;
         f2.Losses++;
     }
@@ -97,6 +114,7 @@ if (betamount <= 0)
             std::cout << "Winner: "
           << f1.Name
           << "\n";
+          std::cout<<"Finish: "<<Finish<<"\n";
         f1.Wins++;
         f2.Losses++;
         }
@@ -104,6 +122,7 @@ if (betamount <= 0)
         {
             winner=&f2;
             std::cout<<"Winner: "<<f2.Name<<"\n";
+            std::cout<<"Finish: "<<Finish<<"\n";
             f2.Wins++;
             f1.Losses++;
         }
@@ -113,6 +132,7 @@ if (betamount <= 0)
     {
         winner=&f2;
         std::cout<<"Winner: "<<f2.Name<<"\n";
+        std::cout<<"Finish: "<<Finish<<"\n";
         f2.Wins++;
         f1.Losses++;
     }
@@ -135,6 +155,7 @@ if (betamount <= 0)
     
     std::cout << "\nCurrent Balance: $"
           << Money
-          << "\n";
+          << "\n\n";
+    std::cout<<"====================\n";
 }
 
