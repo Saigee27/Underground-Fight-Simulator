@@ -23,11 +23,11 @@ void FightNight()
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
 
-    std::cout<<"\n====================\n";
+    std::cout<<"\n====================\n\n";
     std::cout<<"Balance: $"<<Money<<std::endl;
     std::cout<<"\n====================\n\n";
 
-    std::cout << "\n===== FIGHT NIGHT =====\n";
+    std::cout << "\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
     std::cout << f1.Name << "\n";
@@ -41,8 +41,14 @@ void FightNight()
     std::cout << "TGH: " << f2.Toughness << "\n\n";
 
 
-    int score1 = f1.Strength + f1.Stamina + f1.Toughness;
-    int score2 = f2.Strength + f2.Stamina + f2.Toughness;
+    int BaseRating1 = f1.Strength + f1.Stamina + f1.Toughness;
+    int BaseRating2 = f2.Strength + f2.Stamina + f2.Toughness;
+
+    int RoundsWon1=0;
+    int RoundsWon2=0;
+
+    Fighter* winner = nullptr;
+
 
     int betchoice=0;
     std::cout << "Place your bet:\n";
@@ -79,63 +85,116 @@ if (betamount <= 0)
     }
 
 
-    std::string Finishes[]
+
+
+    for (int round=1; round<=3; round++)
     {
-        "Knockout",
-        "Technical Knockout",
-        "Rear Naked Choke",
-        "Guillotine Submission",
-        "Armbar Submission",
-        "Split Decision",
-        "Unanimous Decision"
-    };
+        std::cout << "\n===== ROUND "
+              << round
+              << " =====\n\n";
 
-    int F=rand()%7;
-    std::string Finish = Finishes[F];
+        int form1 = rand() % 61 - 30;
+        int form2 = rand() % 61 - 30;
+
+        int performance1 = BaseRating1 + form1;
+        int performance2 = BaseRating2 + form2;
+
+        int diff = abs(performance1 - performance2);
 
 
-    Fighter* winner;
-    if (score1 > score2)
-    {
-        winner=&f1;
-        std::cout << "Winner: "
-          << f1.Name
-          << "\n";
-        std::cout<<"Finish: "<<Finish<<"\n";
-        f1.Wins++;
-        f2.Losses++;
+
+        if (performance1 > performance2)
+        {
+            RoundsWon1++;
+            std::cout
+            << f1.Name
+            << " wins Round "
+            << round
+            << "\n";
+
+            if (diff >= 50)
+            {
+                int ko = rand() % 100 + 1;
+                if (ko <= 30)
+                {
+                      std::cout<< "\nKNOCKOUT!\n";
+                      winner = &f1;
+                      RoundsWon1=3;
+                      break;
+                    
+                }
+            }
+
+        }
+        else 
+        {
+            RoundsWon2++;
+            std::cout
+            << f2.Name
+            << " wins Round "
+            << round
+            << "\n";
+            if (diff>=50)
+            {
+                int ko = rand() % 100 + 1;
+                
+                if(ko<=30)
+                {
+                    std::cout<< "\nKNOCKOUT!\n";
+                    winner=&f2;
+                    RoundsWon2=3;
+                    break;
+                }
+            }
+
+        }
+        std::cout
+        << "\nScore:\n";
+
+        std::cout
+        << f1.Name
+        << ": "
+        << RoundsWon1
+        << "\n";
+
+        std::cout
+        << f2.Name
+        << ": "
+        << RoundsWon2
+        << "\n";
     }
 
-    else if (score1==score2)
-    {
-        if(rand() % 2 == 0)
-        {
-            winner=&f1;
-            std::cout << "Winner: "
-          << f1.Name
-          << "\n";
-          std::cout<<"Finish: "<<Finish<<"\n";
-        f1.Wins++;
-        f2.Losses++;
-        }
-        else
-        {
-            winner=&f2;
-            std::cout<<"Winner: "<<f2.Name<<"\n";
-            std::cout<<"Finish: "<<Finish<<"\n";
-            f2.Wins++;
-            f1.Losses++;
-        }
-    }
 
+    if (winner == nullptr)
+{
+    if (RoundsWon1 > RoundsWon2)
+    {
+        winner = &f1;
+    }
     else
     {
-        winner=&f2;
-        std::cout<<"Winner: "<<f2.Name<<"\n";
-        std::cout<<"Finish: "<<Finish<<"\n";
-        f2.Wins++;
-        f1.Losses++;
+        winner = &f2;
     }
+}
+
+if (winner == &f1)
+{
+    f1.Wins++;
+    f2.Losses++;
+}
+else
+{
+    f2.Wins++;
+    f1.Losses++;
+}
+
+std::cout
+<< "\n===== FINAL RESULT =====\n\n";
+
+std::cout
+<< "Winner: "
+<< winner->Name
+<< "\n";
 
     std::cout<<"\n";
 
