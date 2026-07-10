@@ -62,6 +62,7 @@ void FightNight()
     std::cout << "Bet Amount: $";
     std::cin>>betamount;
     std::cout<<"\n";
+    std::cin.ignore(1000,'\n');
     if (betamount > Money)
 {
     std::cout << "Insufficient Funds!\n";
@@ -79,9 +80,14 @@ if (betamount <= 0)
     {
         chosenfighter = &f1;
     }
-    else
+    else if(betchoice==2)
     {
         chosenfighter = &f2;
+    }
+    else 
+    {
+        std::cout << "Invalid Choice!\n";
+        return;
     }
 
 
@@ -126,7 +132,7 @@ if (betamount <= 0)
             }
 
         }
-        else 
+        else if(performance1 < performance2)
         {
             RoundsWon2++;
             std::cout
@@ -148,6 +154,30 @@ if (betamount <= 0)
             }
 
         }
+
+        else 
+        {
+              if (rand() % 2 == 0)
+    {
+        RoundsWon1++;
+
+        std::cout
+        << "Close round! Judges favor "
+        << f1.Name
+        << "\n";
+    }
+    else
+    {
+        RoundsWon2++;
+
+        std::cout
+        << "Close round! Judges favor "
+        << f2.Name
+        << "\n";
+    }
+        }
+
+
         std::cout
         << "\nScore:\n";
 
@@ -162,6 +192,17 @@ if (betamount <= 0)
         << ": "
         << RoundsWon2
         << "\n";
+
+        if (round < 3)
+        {
+            std::cout
+            << "\n-------------------------\n";
+
+            std::cout
+            << "Press Enter for next round...";
+
+            std::cin.get();
+        }
     }
 
 
