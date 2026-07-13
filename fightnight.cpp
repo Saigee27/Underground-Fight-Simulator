@@ -2,6 +2,7 @@
 #include "Fighter.h"
 #include "Bank.h"
 #include <iostream>
+#include <vector>
 #include <cstdlib>
 
 void FightNight()
@@ -24,10 +25,10 @@ void FightNight()
     Fighter & f2 = roster[fighter2];
 
     std::cout<<"\n====================\n\n";
-    std::cout<<"Balance: $"<<Money<<std::endl;
+    std::cout<<" Balance: $"<<Money<<std::endl;
     std::cout<<"\n====================\n\n";
 
-    std::cout << "\n===== FIGHT NIGHT =====\n\n";
+    std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
     std::cout << f1.Name << "\n";
@@ -98,6 +99,9 @@ if (betamount <= 0)
         std::cout << "\n===== ROUND "
               << round
               << " =====\n\n";
+              commentary();
+              commentary();
+              std::cout<<"\n";
 
         int form1 = rand() % 61 - 30;
         int form2 = rand() % 61 - 30;
@@ -118,12 +122,15 @@ if (betamount <= 0)
             << round
             << "\n";
 
+            CloseCommentary(f1,f2,diff);
+
             if (diff >= 50)
             {
                 int ko = rand() % 100 + 1;
                 if (ko <= 30)
                 {
-                      std::cout<< "\nKNOCKOUT!\n";
+                      std::cout << "\nKNOCKOUT!\n";
+                        KOCommentary(f1, f2);
                       winner = &f1;
                       RoundsWon1=3;
                       break;
@@ -140,13 +147,18 @@ if (betamount <= 0)
             << " wins Round "
             << round
             << "\n";
+
+            CloseCommentary(f2,f1,diff);
+
             if (diff>=50)
             {
                 int ko = rand() % 100 + 1;
                 
                 if(ko<=30)
                 {
-                    std::cout<< "\nKNOCKOUT!\n";
+                    
+                    std::cout << "\nKNOCKOUT!\n";
+                    KOCommentary(f2, f1);
                     winner=&f2;
                     RoundsWon2=3;
                     break;
@@ -179,7 +191,7 @@ if (betamount <= 0)
 
 
         std::cout
-        << "\nScore:\n";
+        << "\nSCOREBOARD:\n";
 
         std::cout
         << f1.Name
@@ -259,3 +271,91 @@ std::cout
     std::cout<<"====================\n";
 }
 
+
+void commentary()
+{
+    std::vector <std::string> lines =
+    {
+        "A huge right hand lands clean!",
+        "The crowd erupts as both fighters exchange punches!",
+        "A crushing body shot connects!",
+        "Neither fighter is willing to back down!",
+        "A sharp jab snaps the head back!",
+        "The pace of this fight is unbelievable!",
+        "Both men are trading heavy shots!",
+        "A powerful combination lands!",
+        "The fighter stumbles but stays standing!",
+        "The arena is absolutely electric tonight!"
+    };
+
+    int randomline = rand() % lines.size();
+    std::cout<<lines[randomline]<<"\n";
+}
+
+void CloseCommentary(Fighter& winner, Fighter& loser, int diff)
+{
+    std::vector <std::string> closeFight =
+    {
+        "Both fighters are trading evenly!",
+        "Neither fighter is giving an inch!",
+        "That round was incredibly close!",
+        "The crowd cannot separate these two!",
+        "Both men are matching each other punch for punch!"
+    };
+
+    std::vector <std::string> goodRound = 
+    {
+        winner.Name + " is starting to find momentum!",
+        winner.Name + " is gaining confidence!",
+        loser.Name + " needs to answer back quickly!",
+        winner.Name + " edges ahead in the fight!",
+        winner.Name + " is putting together some good work!"
+    };
+
+    std::vector <std::string> dominantRound =
+    {
+        winner.Name + " lands a devastating combination!",
+        loser.Name + " looks badly hurt!",
+        winner.Name + " is taking complete control!",
+        loser.Name + " is struggling to keep up!",
+        winner.Name + " has the crowd on its feet!",
+        winner.Name + " is overwhelming the opposition!",
+        loser.Name + " is getting battered around the cage!",
+        winner.Name + " smells blood!"
+    };
+
+    if (diff<15)
+    {
+        int close = rand() % closeFight.size();
+        std::cout<<closeFight[close]<<"\n";
+    }
+
+    else if (diff<40)
+    {
+        int good = rand() % goodRound.size();
+        std::cout<<goodRound[good]<<"\n";
+    }
+
+    else
+    {
+        int dom = rand() % dominantRound.size();
+        std::cout<<dominantRound[dom]<<"\n"; 
+    }
+}
+
+void KOCommentary(Fighter& winner, Fighter& loser)
+{
+    std::vector <std::string> KoLines = 
+    {
+        winner.Name + " sends " + loser.Name + " crashing to the canvas!",
+        winner.Name + " lands a shot from hell!",
+        loser.Name + " is OUT COLD!",
+        winner.Name + " scores a spectacular knockout!",
+        loser.Name + " never saw that punch coming!",
+        winner.Name + " shuts the lights out!",
+        winner.Name + " ends the fight instantly!"
+    };
+
+    int Ko = rand() % KoLines.size();
+    std::cout<<KoLines[Ko]<<"\n";
+}
