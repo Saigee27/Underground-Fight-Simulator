@@ -1,4 +1,5 @@
 #include "Fighter.h"
+#include "NameGen.h"
 #include <vector>
 #include <iostream>
 #include <ctime>
@@ -9,15 +10,16 @@ std::vector<Fighter> roster;
 
 
 void CreateRoster(){
-for (int i = 0; i < 4; i++)
+for (int i = 0; i < 10; i++)
 {
     Fighter fighter;
-    std::cout << "\nEnter Fighter Name: ";
-    std::getline(std::cin,fighter.Name);
+    fighter.Name = GenerateName();
     fighter.Stamina = rand() % 41 + 60;
     fighter.Strength = rand() % 41 + 60;
     fighter.Toughness = rand() % 41 + 60;
+    std::cout << fighter.Name << " has joined the roster!\n\n";
     roster.push_back(fighter);
+   
     
 }
 }

@@ -14,7 +14,8 @@ void Show()
     std::cout<<"Organization : "<<OrgName;
     std::cout<<"\n_________________________________________\n";
 }
-int main()
+
+    int main()
 {
     srand(time(0));
     std::cout<<"Enter your name: ";
@@ -22,7 +23,7 @@ int main()
     std::cout<<"Name your Organization: ";
     std::getline(std::cin,OrgName);
     Show();
-    std::cout<<"\nENTER YOUR FIRST 4 FIGHTERS\n";
+    
     CreateRoster();
     
     menu();

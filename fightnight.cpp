@@ -120,7 +120,7 @@ if (betamount <= 0)
             << f1.Name
             << " wins Round "
             << round
-            << "\n";
+            << "\n\n";
 
             CloseCommentary(f1,f2,diff);
 
@@ -146,7 +146,7 @@ if (betamount <= 0)
             << f2.Name
             << " wins Round "
             << round
-            << "\n";
+            << "\n\n";
 
             CloseCommentary(f2,f1,diff);
 
