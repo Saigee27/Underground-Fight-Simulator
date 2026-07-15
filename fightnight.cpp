@@ -1,6 +1,7 @@
 #include "fightnight.h"
 #include "Commentary.h"
 #include "Bank.h"
+#include "Timeline.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -25,7 +26,8 @@ void FightNight()
     Fighter & f2 = roster[fighter2];
 
     std::cout<<"\n====================\n\n";
-    std::cout<<" Balance: $"<<Money<<std::endl;
+    ShowDate();
+    std::cout<<"\nBalance: $"<<Money<<"\n";
     std::cout<<"\n====================\n\n";
 
     std::cout<<"\n===== FIGHT NIGHT =====\n\n";
@@ -61,21 +63,30 @@ void FightNight()
     std::cin>>betchoice;
 
     int betamount=0;
+    while(true)
+    {
     std::cout << "Bet Amount: $";
     std::cin>>betamount;
     std::cout<<"\n";
-    std::cin.ignore(1000,'\n');
+    
     if (betamount > Money)
 {
     std::cout << "Insufficient Funds!\n";
-    return;
+    continue;
 }
 
 if (betamount <= 0)
 {
     std::cout << "Invalid Bet!\n";
-    return;
+    continue;
 }
+
+break;
+
+}
+std::cin.ignore(1000,'\n');
+
+
 
     Fighter* chosenfighter;
     if(betchoice==1)
@@ -116,57 +127,61 @@ if (betamount <= 0)
 
         if (performance1 > performance2)
         {
+            
+
+            if (diff >= 50)
+            {
+                int ko = rand() % 100 + 1;
+                if (ko <= 40)
+                {
+                      std::cout << "\nKNOCKOUT!\n";
+                        KOCommentary(f1, f2);
+                      winner = &f1;
+                      KOFinish=true;
+                      break;
+                    
+                }
+            }
+
             RoundsWon1++;
+            CloseCommentary(f1,f2,diff);
             std::cout
             << f1.Name
             << " wins Round "
             << round
             << "\n\n";
 
-            CloseCommentary(f1,f2,diff);
-
-            if (diff >= 50)
-            {
-                int ko = rand() % 100 + 1;
-                if (ko <= 30)
-                {
-                      std::cout << "\nKNOCKOUT!\n";
-                        KOCommentary(f1, f2);
-                      winner = &f1;
-                      KOFinish=true;
-                      RoundsWon1=3;
-                      break;
-                    
-                }
-            }
+            
 
         }
         else if(performance1 < performance2)
         {
-            RoundsWon2++;
-            std::cout
-            << f2.Name
-            << " wins Round "
-            << round
-            << "\n\n";
-
-            CloseCommentary(f2,f1,diff);
-
+            
             if (diff>=50)
             {
                 int ko = rand() % 100 + 1;
                 
-                if(ko<=30)
+                if(ko<=40)
                 {
                     
                     std::cout << "\nKNOCKOUT!\n";
                     KOCommentary(f2, f1);
                     winner=&f2;
                     KOFinish=true;
-                    RoundsWon2=3;
                     break;
                 }
             }
+
+            RoundsWon2++;
+            CloseCommentary(f2,f1,diff);
+            std::cout
+            << f2.Name
+            << " wins Round "
+            << round
+            << "\n\n";
+
+            
+
 
         }
 
@@ -280,6 +295,8 @@ std::cout
           << Money
           << "\n\n";
     std::cout<<"====================\n";
+
+    AdvanceTime();
 }
 
 

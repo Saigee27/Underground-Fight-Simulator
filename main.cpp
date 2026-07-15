@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Fighter.h"
 #include "menu.h"
+#include "Timeline.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -12,7 +13,7 @@ void Show()
     std::cout<<"\n";
     std::cout<<"Owner : "<<OwnerName<<std::endl;
     std::cout<<"Organization : "<<OrgName;
-    std::cout<<"\n_________________________________________\n";
+    std::cout<<"\n_________________________________________\n\n";
 }
 
     int main()
@@ -22,6 +23,7 @@ void Show()
     std::getline(std::cin,OwnerName);
     std::cout<<"Name your Organization: ";
     std::getline(std::cin,OrgName);
+    SetStartingYear();
     Show();
     
     CreateRoster();
