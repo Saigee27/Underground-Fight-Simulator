@@ -43,3 +43,127 @@ void ViewRoster()
     }
     std::cout << "===============\n";
 }
+
+void ImproveStats(Fighter& winner, Fighter& loser)
+{
+    int winnerstats = rand() % 3;
+    int winnergained = rand() % 3 + 1;
+
+    int loserstats = rand() % 3;
+    int losergained = rand() % 3 - 1;
+
+
+    if (winnerstats == 0)
+    {
+        winner.Strength += winnergained;
+        if (winner.Strength > 100)
+        {
+            winner.Strength = 100;
+        }
+            std::cout << winner.Name << " improved Strength by +" << winnergained << "!\n";
+    }
+    else if (winnerstats == 1)
+    {
+        winner.Stamina += winnergained;
+        if (winner.Stamina > 100)
+        {
+            winner.Stamina = 100;
+        }
+        std::cout<<winner.Name<<" improved Stamina by +"<<winnergained<<"!\n";
+    }
+    else
+    {
+        winner.Toughness += winnergained;
+        if(winner.Toughness > 100)
+        {
+            winner.Toughness = 100;
+        }
+        std::cout << winner.Name <<" improved Toughness by +"<<winnergained<<"!\n";
+    }
+
+    if (losergained != 0)
+    {
+        if (loserstats == 0)
+        {
+            loser.Strength += losergained;
+            if (loser.Strength > 100)
+            {
+                loser.Strength = 100;
+            }
+            if (loser.Strength < 50)
+            {
+                loser.Strength = 50;
+            }
+
+            if (losergained > 0)
+        {
+            std::cout << loser.Name
+                      << " improved Strength by +"
+                      << losergained
+                      << " despite the loss!\n";
+        }
+        else
+        {
+            std::cout << loser.Name
+                      << " lost "
+                      << -losergained
+                      << " Strength after the defeat!\n";
+        }
+        }
+
+        else if (loserstats == 1)
+        {
+            loser.Stamina += losergained;
+            if (loser.Stamina > 100)
+            {
+                loser.Stamina = 100;
+            }
+            if (loser.Stamina < 50)
+            {
+                loser.Stamina = 50;
+            }
+            
+            if (losergained > 0)
+            {
+                std::cout << loser.Name
+                  << " improved Stamina by +"
+                  << losergained
+                  << " despite the loss!\n";
+            }
+            else
+            {
+                std::cout << loser.Name
+                  << " lost "
+                  << -losergained
+                  << " Stamina after the defeat!\n";
+            }
+
+        }
+        
+        else
+        {
+            loser.Toughness += losergained;
+
+            if (loser.Toughness > 100)
+                loser.Toughness = 100;
+
+            if (loser.Toughness < 50)
+                loser.Toughness = 50;
+
+            if (losergained > 0)
+            {
+                std::cout << loser.Name
+                        << " improved Toughness by +"
+                        << losergained
+                        << " despite the loss!\n";
+            }
+            else
+            {
+                std::cout << loser.Name
+                        << " lost "
+                        << -losergained
+                        << " Toughness after the defeat!\n";
+            }
+        }
+    }
+}

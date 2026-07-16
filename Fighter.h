@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 
+
 class Fighter 
 {
     public:
@@ -16,4 +17,5 @@ class Fighter
 extern std::vector<Fighter> roster;
 void CreateRoster();
 void ViewRoster();
+void ImproveStats(Fighter& winner, Fighter& loser);
 #endif

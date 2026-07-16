@@ -153,8 +153,8 @@ void showHeadline(Fighter& winner, Fighter& loser, bool KO)
         headline.replace(pos,std::string("%LOSER%").length(),loser.Name);
     }
 
-    std::cout << "\n==================================\n";
+    std::cout << "\n==================================\n\n";
     std::cout << "HEADLINE: \n";
     std::cout << headline << "\n";
-    std::cout << "==================================\n";
+    std::cout << "\n==================================\n";
 };

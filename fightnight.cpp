@@ -5,6 +5,11 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+void PauseGame()
+{
+    std::cout << "\nPress Enter to continue...";
+    std::cin.get();
+}
 
 void FightNight()
 {
@@ -145,6 +150,7 @@ std::cin.ignore(1000,'\n');
 
             RoundsWon1++;
             CloseCommentary(f1,f2,diff);
+            std::cout<<"\n";
             std::cout
             << f1.Name
             << " wins Round "
@@ -174,6 +180,7 @@ std::cin.ignore(1000,'\n');
 
             RoundsWon2++;
             CloseCommentary(f2,f1,diff);
+            std::cout<<"\n";
             std::cout
             << f2.Name
             << " wins Round "
@@ -252,11 +259,13 @@ if (winner == &f1)
 {
     f1.Wins++;
     f2.Losses++;
+    
 }
 else
 {
     f2.Wins++;
     f1.Losses++;
+    
 }
 
 std::cout
@@ -267,7 +276,7 @@ std::cout
 << winner->Name
 << "\n";
 
-    std::cout<<"\n";
+   PauseGame();
 
     if(winner==&f1)
     {
@@ -277,6 +286,22 @@ std::cout
     {
         showHeadline(f2,f1,KOFinish);
     }
+
+std::cout<<"\n\n";
+
+    std::cout << "===== POST FIGHT DEVELOPMENT =====\n\n";
+if (winner == &f1)
+{  
+    ImproveStats(f1,f2);
+}
+else
+{
+    ImproveStats(f2,f1);
+}
+std::cout << "\n=============================\n";
+
+PauseGame();
+
 
     if (chosenfighter==winner)
     {

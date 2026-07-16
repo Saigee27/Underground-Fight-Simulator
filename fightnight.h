@@ -3,4 +3,7 @@
 #include "Fighter.h"
 void FightNight();
 
+
+void PauseGame();
+
 #endif
