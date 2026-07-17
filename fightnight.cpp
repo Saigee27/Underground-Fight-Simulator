@@ -2,6 +2,7 @@
 #include "Commentary.h"
 #include "Bank.h"
 #include "Timeline.h"
+#include "Popularity.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -268,6 +269,23 @@ else
     
 }
 
+bool Upset = false;
+if (winner == &f1)
+{
+    if(BaseRating1 + 40 < BaseRating2)
+    {
+        Upset = true;
+    }
+}
+else
+{
+    if (BaseRating2 + 40 < BaseRating1)
+    {
+        Upset = true;
+    }
+}
+
+
 std::cout
 << "\n===== FINAL RESULT =====\n\n";
 
@@ -293,10 +311,12 @@ std::cout<<"\n\n";
 if (winner == &f1)
 {  
     ImproveStats(f1,f2);
+    UpdatePopularity(f1,f2,KOFinish,Upset);
 }
 else
 {
     ImproveStats(f2,f1);
+    UpdatePopularity(f2,f1,KOFinish,Upset);
 }
 std::cout << "\n=============================\n";
 

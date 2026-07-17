@@ -13,6 +13,7 @@ class Fighter
     int Toughness=0;
     int Wins = 0;
     int Losses = 0;
+    int Popularity;
 };
 extern std::vector<Fighter> roster;
 void CreateRoster();

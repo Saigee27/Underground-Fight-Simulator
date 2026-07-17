@@ -17,6 +17,7 @@ for (int i = 0; i < 10; i++)
     fighter.Stamina = rand() % 41 + 60;
     fighter.Strength = rand() % 41 + 60;
     fighter.Toughness = rand() % 41 + 60;
+    fighter.Popularity = rand() % 31 + 20;
     std::cout << fighter.Name << " has joined the roster!\n\n";
     roster.push_back(fighter);
    
@@ -39,6 +40,7 @@ void ViewRoster()
         std::cout<<"Toughness: "<<fighter.Toughness<<std::endl;
         std::cout<<"Wins: "<<fighter.Wins<<std::endl;
         std::cout<<"Losses: "<<fighter.Losses<<std::endl;
+        std::cout<<"Popularity: "<<fighter.Popularity<<std::endl;
         std::cout<<"\n";
     }
     std::cout << "===============\n";
