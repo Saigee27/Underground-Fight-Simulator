@@ -58,3 +58,14 @@ void UpdatePopularity(Fighter& winner, Fighter& loser, bool KOFinish, bool Upset
 
     std::cout << "\n";
 }
+
+void DecayPopularity()
+{
+    for (Fighter& fighter : roster)
+    {
+        if (fighter.Popularity > 30)
+        {
+            fighter.Popularity--;
+        }
+    }
+}

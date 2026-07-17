@@ -1,4 +1,5 @@
 #include "Timeline.h"
+#include "Popularity.h"
 #include <vector>
 #include <iostream>
 
@@ -44,6 +45,7 @@ void AdvanceTime()
     {
         week=1;
         monthindex++;
+        DecayPopularity();
     }
     if (monthindex > 11)
     {
