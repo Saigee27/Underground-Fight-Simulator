@@ -14,9 +14,14 @@ class Fighter
     int Wins = 0;
     int Losses = 0;
     int Popularity;
+
+    int SeasonWins=0;
+    int SeasonLosses=0;
+    int SeasonFights=0;
 };
 extern std::vector<Fighter> roster;
 void CreateRoster();
 void ViewRoster();
+void ViewStandings();
 void ImproveStats(Fighter& winner, Fighter& loser);
 #endif

@@ -18,7 +18,8 @@ void menu()
         std::cout<<"\n";
         std::cout<<"1. View Roster"<<std::endl;
         std::cout<<"2. Fight Night"<<std::endl;
-        std::cout<<"3. Exit"<<std::endl;
+        std::cout<<"3. View Grand Prix Standings\n";
+        std::cout<<"4. Exit"<<std::endl;
         std::cout<<"\n";
         std::cout<<"Choice: ";
         std::cin>>p;
@@ -34,6 +35,10 @@ void menu()
             break;
 
         case 3:
+        ViewStandings();
+            break;
+
+        case 4:
             std::cout<<"\nGood-Bye\n\n";
             return;
 

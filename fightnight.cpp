@@ -260,6 +260,12 @@ if (winner == &f1)
 {
     f1.Wins++;
     f2.Losses++;
+
+    f1.SeasonWins++;
+    f2.SeasonLosses++;
+
+    f1.SeasonFights++;
+    f2.SeasonFights++;
     
 }
 else
@@ -267,6 +273,11 @@ else
     f2.Wins++;
     f1.Losses++;
     
+    f2.SeasonWins++;
+    f1.SeasonLosses++;
+
+    f2.SeasonFights++;
+    f1.SeasonFights++;
 }
 
 bool Upset = false;
