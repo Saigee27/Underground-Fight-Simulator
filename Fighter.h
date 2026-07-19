@@ -22,6 +22,6 @@ class Fighter
 extern std::vector<Fighter> roster;
 void CreateRoster();
 void ViewRoster();
-void ViewStandings();
+
 void ImproveStats(Fighter& winner, Fighter& loser);
 #endif

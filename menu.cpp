@@ -2,6 +2,7 @@
 #include "Fighter.h"
 #include "fightnight.h"
 #include "Bank.h"
+#include "GrandPrix.h"
 #include <iostream>
 
 void menu()

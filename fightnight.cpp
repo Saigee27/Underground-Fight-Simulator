@@ -3,9 +3,11 @@
 #include "Bank.h"
 #include "Timeline.h"
 #include "Popularity.h"
+#include "GrandPrix.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+extern std::vector<std::pair<int,int>> GrandPrixMatches;
 void PauseGame()
 {
     std::cout << "\nPress Enter to continue...";
@@ -14,19 +16,33 @@ void PauseGame()
 
 void FightNight()
 {
-    int fighter1 = rand() % roster.size();
-    int fighter2 = rand() % roster.size();
+    int fighter1;
+    int fighter2;
 
-    if (roster.size() < 2)
+
+     if (roster.size() < 2)
     {
         std::cout << "Not enough fighters!\n";
         return;
     }
 
-    while (fighter1==fighter2)
+    if (CompleteSeason())
     {
-        fighter2 = rand() % roster.size();
+        std::cout << "\nTHE GRAND PRIX REGULAR SEASON HAS ENDED!\n";
+        return;
     }
+
+    do
+    {
+        fighter1 = rand() % roster.size();
+        fighter2 = rand() % roster.size();
+    } 
+    
+    while 
+    (
+        fighter1 == fighter2 || roster[fighter1].SeasonFights >= 3 || roster[fighter2].SeasonFights >= 3 || HasFoughtBefore(fighter1,fighter2) 
+    );
+
 
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
@@ -323,12 +339,20 @@ if (winner == &f1)
 {  
     ImproveStats(f1,f2);
     UpdatePopularity(f1,f2,KOFinish,Upset);
+    
 }
 else
 {
     ImproveStats(f2,f1);
     UpdatePopularity(f2,f1,KOFinish,Upset);
+    
 }
+
+RecordMatches(fighter1,fighter2);
+std::cout
+<< "\nGrand Prix Matches Played: "
+<< GrandPrixMatches.size()
+<< "/15\n";
 std::cout << "\n=============================\n";
 
 PauseGame();

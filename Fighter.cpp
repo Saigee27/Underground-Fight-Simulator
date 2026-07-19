@@ -27,44 +27,6 @@ for (int i = 0; i < 10; i++)
 }
 
 
-void ViewStandings()
-{
-
-    std::vector<Fighter> standings = roster;
-    std::sort(standings.begin(), standings.end(),[](const Fighter& a, const Fighter& b)
-    {
-        if (a.SeasonWins == b.SeasonWins)
-        { 
-            if(a.SeasonLosses == b.SeasonLosses)
-            {
-                return a.Popularity > b.Popularity;
-            }
-            return a.SeasonLosses < b.SeasonLosses;
-        }
-        return a.SeasonWins > b.SeasonWins;
-    });
-     std::cout << "\n===== THE PIT GRAND PRIX =====\n\n";
-
-     int rank = 1;
-
-    for (const Fighter& fighter : standings)
-    {
-        std::cout
-            << "#" << rank << " "
-            << fighter.Name
-            << " | "
-            << fighter.SeasonWins
-            << "-"
-            << fighter.SeasonLosses
-            << " | Fights: "
-            << fighter.SeasonFights
-            << "\n";
-    rank++;
-    }
-    std::cout<<"\n";
-}
-
-
 
 void ViewRoster()
 {
