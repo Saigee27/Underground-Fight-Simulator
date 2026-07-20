@@ -4,4 +4,5 @@ void ViewStandings();
 bool HasFoughtBefore(int fighter1, int fighter2);
 bool CompleteSeason();
 void RecordMatches(int fighter1, int fighter2);
+void CrownChampion();
 #endif

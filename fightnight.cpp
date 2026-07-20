@@ -28,21 +28,33 @@ void FightNight()
 
     if (CompleteSeason())
     {
-        std::cout << "\nTHE GRAND PRIX REGULAR SEASON HAS ENDED!\n";
+        ViewStandings();
+        CrownChampion();
+    }
+
+    int attempts = 0;
+
+do
+{
+    fighter1 = rand() % roster.size();
+    fighter2 = rand() % roster.size();
+
+    attempts++;
+
+    if (attempts > 1000)
+    {
+        std::cout << "\nNo valid fights remaining!\n";
         return;
     }
 
-    do
-    {
-        fighter1 = rand() % roster.size();
-        fighter2 = rand() % roster.size();
-    } 
-    
-    while 
-    (
-        fighter1 == fighter2 || roster[fighter1].SeasonFights >= 3 || roster[fighter2].SeasonFights >= 3 || HasFoughtBefore(fighter1,fighter2) 
-    );
-
+}
+while
+(
+    fighter1 == fighter2 ||
+    roster[fighter1].SeasonFights >= 3 ||
+    roster[fighter2].SeasonFights >= 3 ||
+    HasFoughtBefore(fighter1,fighter2)
+);
 
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
@@ -82,29 +94,58 @@ void FightNight()
     std::cout << "2. " << f2.Name << "\n";
     std::cout<<"\n";
     std::cout<<"Choice: ";
-    std::cin>>betchoice;
+    
+    while (true)
+{
+    std::cin >> betchoice;
+
+    if (std::cin.fail())
+    {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Invalid input!\nChoice: ";
+        continue;
+    }
+
+    if (betchoice != 1 && betchoice != 2)
+    {
+        std::cout << "Choose 1 or 2!\nChoice: ";
+        continue;
+    }
+
+    break;
+}
+
+
 
     int betamount=0;
-    while(true)
-    {
+while(true)
+{
     std::cout << "Bet Amount: $";
-    std::cin>>betamount;
-    std::cout<<"\n";
-    
+
+    std::cin >> betamount;
+
+    if (std::cin.fail())
+    {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Invalid input!\n";
+        continue;
+    }
+
     if (betamount > Money)
-{
-    std::cout << "Insufficient Funds!\n";
-    continue;
-}
+    {
+        std::cout << "Insufficient Funds!\n";
+        continue;
+    }
 
-if (betamount <= 0)
-{
-    std::cout << "Invalid Bet!\n";
-    continue;
-}
+    if (betamount <= 0)
+    {
+        std::cout << "Invalid Bet!\n";
+        continue;
+    }
 
-break;
-
+    break;
 }
 std::cin.ignore(1000,'\n');
 
