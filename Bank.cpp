@@ -2,6 +2,7 @@
 #include <iostream>
 
 int Money = 1000;
+bool GrandPrixFinished = false;
 void BankMenu()
 {
     std::cout << "\n===== BANK =====\n\n";

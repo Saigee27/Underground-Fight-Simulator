@@ -158,3 +158,35 @@ void showHeadline(Fighter& winner, Fighter& loser, bool KO)
     std::cout << headline << "\n";
     std::cout << "\n==================================\n";
 };
+
+
+std::string ChampionMessages[] =
+{
+    "%WINNER% stands atop The Pit as the inaugural Grand Prix Champion!",
+    
+    "Gold around the waist! %WINNER% conquers the tournament and claims championship glory!",
+    
+    "After a brutal season, %WINNER% leaves no doubt and captures the belt!",
+    
+    "The crowd erupts as %WINNER% is crowned Grand Prix Champion!",
+    
+    "%WINNER% survives the war, wins the final, and takes home the championship!"
+};
+
+void ChampionCommentary(Fighter& winner)
+{
+    int index = rand() % 5;
+
+    std::string message = ChampionMessages[index];
+
+    size_t pos = message.find("%WINNER%");
+
+    if(pos != std::string::npos)
+    {
+        message.replace(pos, 8, winner.Name);
+    }
+
+    std::cout << "\n🏆 CHAMPIONSHIP MOMENT 🏆\n\n";
+    std::cout << message << "\n\n";
+}
+

@@ -445,10 +445,14 @@ std::cout
    PauseGame();
 
    std::cout
-<< "\n🏆 GRAND PRIX CHAMPION: "
+<< "\nGRAND PRIX CHAMPION: "
 << winner->Name
-<< " 🏆\n\n";
+<< " \n\n";
 
+GrandPrixFinished = true;
+
+    PauseGame();
+    ChampionCommentary(*winner);
     PauseGame();
 
     if(winner==&f1)

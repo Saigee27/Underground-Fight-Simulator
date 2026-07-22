@@ -16,6 +16,16 @@ void PauseGame()
 
 void FightNight()
 {
+
+    if (GrandPrixFinished)
+    {
+        std::cout
+        << "\nThe Grand Prix has already concluded!\n";
+
+        return;
+    }
+
+    
     int fighter1;
     int fighter2;
 

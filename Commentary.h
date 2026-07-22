@@ -5,4 +5,5 @@ void commentary();
 void CloseCommentary(Fighter& winner, Fighter& loser, int diff);
 void KOCommentary(Fighter& winner, Fighter& loser);
 void showHeadline(Fighter& winner, Fighter& loser, bool KO);
+void ChampionCommentary(Fighter& winner);
 #endif
