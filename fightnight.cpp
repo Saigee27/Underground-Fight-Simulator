@@ -323,10 +323,30 @@ std::cin.ignore(1000,'\n');
     }
 }
 
+
+Fighter* loser;
+
+if (winner == &f1)
+{
+    loser = &f2;
+}
+else
+{
+    loser = &f1;
+}
+
+
 if (winner == &f1)
 {
     f1.Wins++;
     f2.Losses++;
+
+    f1.WinStreak++;
+    f1.LoseStreak = 0;
+
+    f2.LoseStreak++;
+    f2.WinStreak = 0;
+
 
     f1.SeasonWins++;
     f2.SeasonLosses++;
@@ -339,6 +359,12 @@ else
 {
     f2.Wins++;
     f1.Losses++;
+
+    f2.WinStreak++;
+    f2.LoseStreak = 0;
+
+    f1.LoseStreak++;
+    f1.WinStreak = 0;
     
     f2.SeasonWins++;
     f1.SeasonLosses++;
@@ -370,9 +396,48 @@ std::cout
 std::cout
 << "Winner: "
 << winner->Name
-<< "\n";
+<< "\n\n";
 
-   PauseGame();
+   
+   std::cout
+<< winner->Name
+<< " is now on a "
+<< winner->WinStreak
+<< "-fight win streak!\n";
+    
+
+if (winner->WinStreak == 3)
+{
+    std::cout << winner->Name
+              << " is on fire with three straight victories!\n";
+}
+else if (winner->WinStreak == 5)
+{
+    std::cout <<  winner->Name
+              << " has become one of the hottest fighters in The Pit!\n";
+}
+else if (winner->WinStreak >= 7)
+{
+    std::cout <<  winner->Name
+              << " is building a legendary winning streak!\n";
+}
+
+if (loser->LoseStreak == 3)
+{
+    std::cout << "⚠ "
+              << loser->Name
+              << " has now lost three fights in a row!\n";
+}
+else if (loser->LoseStreak >= 5)
+{
+    std::cout << "🚨 "
+              << loser->Name
+              << "'s career is in serious trouble after "
+              << loser->LoseStreak
+              << " consecutive losses!\n";
+}
+
+    PauseGame();
 
     if(winner==&f1)
     {
@@ -397,6 +462,52 @@ else
     ImproveStats(f2,f1);
     UpdatePopularity(f2,f1,KOFinish,Upset);
     
+}
+
+if (winner->WinStreak >= 7)
+{
+    winner->Popularity += 5;
+    std::cout << "The Industry cannot stop talking about " << winner->Name << "!\n";
+}
+
+else if (winner->WinStreak >= 5)
+{
+    winner->Popularity += 3;
+    std::cout << winner->Name << "'s popularity continues to soar.\n";
+}
+
+else if (winner->WinStreak >= 3)
+{
+    winner->Popularity += 2;
+    std::cout << winner->Name << " is winning over more fans with every victory.\n";
+}
+
+if (loser->LoseStreak >= 7)
+{
+    loser->Popularity -= 5;
+     std::cout << loser->Name << "'s reputation has hit rock bottom.\n";
+}
+
+else if (loser->LoseStreak >= 5)
+{
+    loser->Popularity -= 3;
+    std::cout << loser->Name << "'s popularity is fading.\n";
+}
+
+else if (loser->LoseStreak >= 3)
+{
+    loser->Popularity -= 2;
+    std::cout << loser->Name << " is losing the support of the fans.\n";
+}
+
+if (winner->Popularity > 100)
+{
+    winner->Popularity = 100;
+}
+
+if (loser->Popularity < 0)
+{
+    loser->Popularity = 0;
 }
 
 RecordMatches(fighter1,fighter2);
@@ -425,7 +536,7 @@ PauseGame();
     std::cout << "\nCurrent Balance: $"
           << Money
           << "\n\n";
-    std::cout<<"====================\n";
+    std::cout<<"====================\n\n";
 
     AdvanceTime();
 }
