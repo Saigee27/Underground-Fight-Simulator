@@ -14,6 +14,8 @@ class Fighter
     int Wins = 0;
     int Losses = 0;
     int Popularity;
+    int WinStreak = 0;
+    int LoseStreak = 0;
 
     int SeasonWins=0;
     int SeasonLosses=0;
