@@ -1,4 +1,7 @@
 #include "NameGen.h"
+#include "Fighter.h"
+#include "fightnight.h"
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -39,9 +42,38 @@ std::vector <std::string> lastName =
     "Herrera", "Navarro", "Delgado", "Rojas", "Fuentes"
 };
 
+std::string FighterNicknames[] =
+{
+    "The Hammer",
+    "Ghost",
+    "The Wolf",
+    "Iron Fist",
+    "The Machine",
+    "The Butcher",
+    "The Reaper",
+    "King",
+    "The Beast",
+    "The Nightmare",
+    "The Titan",
+    "Lightning",
+    "The Predator",
+    "The Outlaw",
+    "The Punisher",
+    "The Destroyer",
+    "The Assassin",
+    "The Juggernaut",
+    "The Phantom",
+    "The Savage"
+};
+
+
+
 std::string GenerateName()
 {
     std::string first = firstName[rand() % firstName.size()];
+    std::string nickname = FighterNicknames[rand() % 20];
     std::string last = lastName[rand() % lastName.size()];
-    return first + " " + last;
+    return first + " \"" + nickname + "\" " + last;
 }
+
+

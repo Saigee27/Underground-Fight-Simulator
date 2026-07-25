@@ -8,6 +8,7 @@ class Fighter
 {
     public:
     std::string Name;
+    std::string Nickname;
     int Strength=0;
     int Stamina=0;
     int Toughness=0;
@@ -20,7 +21,11 @@ class Fighter
     int SeasonWins=0;
     int SeasonLosses=0;
     int SeasonFights=0;
+
+    int KOWins = 0;
+    int KOLosses = 0;
 };
+
 extern std::vector<Fighter> roster;
 void CreateRoster();
 void ViewRoster();

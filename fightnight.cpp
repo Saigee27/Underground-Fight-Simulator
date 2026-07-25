@@ -373,6 +373,12 @@ else
     f1.SeasonFights++;
 }
 
+if (KOFinish)
+{
+    winner->KOWins++;
+    loser->KOLosses++;
+}
+
 bool Upset = false;
 if (winner == &f1)
 {

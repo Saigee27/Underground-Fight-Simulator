@@ -38,8 +38,16 @@ void ViewRoster()
         std::cout<<"Strength: "<<fighter.Strength<<std::endl;
         std::cout<<"Stamina: "<<fighter.Stamina<<std::endl;
         std::cout<<"Toughness: "<<fighter.Toughness<<std::endl;
-        std::cout<<"Wins: "<<fighter.Wins<<std::endl;
-        std::cout<<"Losses: "<<fighter.Losses<<std::endl;
+        std::cout
+                << "Record: "
+                << fighter.Wins
+                << "-"
+                << fighter.Losses
+                << " ("
+                << fighter.KOWins
+                << " KO Wins, "
+                << fighter.KOLosses
+                << " KO Losses)\n";
         std::cout<<"Popularity: "<<fighter.Popularity<<std::endl;
         std::cout<<"\n";
     }
