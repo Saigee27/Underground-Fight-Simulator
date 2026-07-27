@@ -5,6 +5,7 @@
 #include "Timeline.h"
 #include "Popularity.h"
 #include "fightnight.h"
+#include "Bookmaker.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -138,6 +139,9 @@ void ChampionshipFight(int fighter1, int fighter2)
 
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
+    BettingOdds odds = GenerateOdds(f1, f2);
+
+    DisplayOdds(f1, f2, odds);
 
     std::cout<<"\n====================\n\n";
     ShowDate();
@@ -169,7 +173,9 @@ void ChampionshipFight(int fighter1, int fighter2)
 
 
     int betchoice=0;
-    std::cout << "Place your bet:\n";
+    std::cout << "Place your bet:\n\n";
+    
+    std::cout<<"\n";
     std::cout << "1. " << f1.Name << "\n";
     std::cout << "2. " << f2.Name << "\n";
     std::cout<<"\n";
@@ -486,18 +492,32 @@ std::cout << "\n=============================\n";
 PauseGame();
 
 
-    if (chosenfighter==winner)
-    {
-        Money=Money+betamount;
-        std::cout << "\nBET WON!\n";
-        std::cout << "Earned $" << betamount << '\n';
-    }
-    else
-    {
-        Money=Money-betamount;
-        std::cout << "\nBET LOST!\n";
-        std::cout << "Lost $" << betamount << '\n';
-    }
+    if (chosenfighter == &f1 && winner == &f1)
+{
+    int payout = static_cast<int>(betamount * odds.Odds1);
+
+    Money += payout;
+
+    std::cout << "\nBET WON!\n";
+    std::cout << "Earned $" << payout << '\n';
+}
+else if (chosenfighter == &f2 && winner == &f2)
+{
+    int payout = static_cast<int>(betamount * odds.Odds2);
+
+    Money += payout;
+
+    std::cout << "\nBET WON!\n";
+    std::cout << "Earned $" << payout << '\n';
+}
+else
+{
+    Money -= betamount;
+
+    std::cout << "\nBET LOST!\n";
+    std::cout << "Lost $" << betamount << '\n';
+}
+    
     
     std::cout << "\nCurrent Balance: $"
           << Money

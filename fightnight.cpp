@@ -1,9 +1,11 @@
 #include "fightnight.h"
+#include "Fighter.h"
 #include "Commentary.h"
 #include "Bank.h"
 #include "Timeline.h"
 #include "Popularity.h"
 #include "GrandPrix.h"
+#include "Bookmaker.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -69,6 +71,10 @@ while
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
 
+    BettingOdds odds = GenerateOdds(f1,f2);
+
+    DisplayOdds(f1,f2,odds);
+
     std::cout<<"\n====================\n\n";
     ShowDate();
     std::cout<<"\nBalance: $"<<Money<<"\n";
@@ -76,6 +82,8 @@ while
 
     std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
+
+
 
     std::cout << f1.Name << "\n";
     std::cout << "STR: " << f1.Strength << "\n";
@@ -526,13 +534,19 @@ std::cout << "\n=============================\n";
 PauseGame();
 
 
-    if (chosenfighter==winner)
-    {
-        Money=Money+betamount;
-        std::cout << "\nBET WON!\n";
-        std::cout << "Earned $" << betamount << '\n';
-    }
-    else
+    if(chosenfighter==&f1 && winner==&f2)
+{
+    Money += (int)(betamount*odds.Odds1);
+    std::cout << "\nBET WON!\n";
+}
+
+else if (chosenfighter==&f2 && winner==&f2)
+{
+    Money += (int)(betamount*odds.Odds2);
+    std::cout << "\nBET WON!\n";
+}
+
+else
     {
         Money=Money-betamount;
         std::cout << "\nBET LOST!\n";
