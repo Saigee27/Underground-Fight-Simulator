@@ -71,9 +71,7 @@ while
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
 
-    BettingOdds odds = GenerateOdds(f1,f2);
-
-    DisplayOdds(f1,f2,odds);
+    
 
     std::cout<<"\n====================\n\n";
     ShowDate();
@@ -83,7 +81,9 @@ while
     std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
+    BettingOdds odds = GenerateOdds(f1,f2);
 
+    DisplayOdds(f1,f2,odds);
 
     std::cout << f1.Name << "\n";
     std::cout << "STR: " << f1.Strength << "\n";
@@ -534,7 +534,7 @@ std::cout << "\n=============================\n";
 PauseGame();
 
 
-    if(chosenfighter==&f1 && winner==&f2)
+    if(chosenfighter==&f1 && winner==&f1)
 {
     Money += (int)(betamount*odds.Odds1);
     std::cout << "\nBET WON!\n";
