@@ -42,7 +42,7 @@ std::vector <std::string> lastName =
     "Herrera", "Navarro", "Delgado", "Rojas", "Fuentes"
 };
 
-std::string FighterNicknames[] =
+std::vector<std::string> FighterNicknames =
 {
     "The Hammer",
     "Ghost",
@@ -67,13 +67,23 @@ std::string FighterNicknames[] =
 };
 
 
-
 std::string GenerateName()
 {
     std::string first = firstName[rand() % firstName.size()];
-    std::string nickname = FighterNicknames[rand() % 20];
+    int index = rand() % FighterNicknames.size();
+
+    std::string nickname = FighterNicknames[index];
+
+    FighterNicknames.erase(FighterNicknames.begin() + index);
+
     std::string last = lastName[rand() % lastName.size()];
-    return first + " \"" + nickname + "\" " + last;
+
+    if (FighterNicknames.empty())
+{
+    return first + " " + last;
 }
 
+    return first + " \"" + nickname + "\" " + last;
+
+}
 
