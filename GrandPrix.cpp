@@ -6,6 +6,7 @@
 #include "Popularity.h"
 #include "fightnight.h"
 #include "Bookmaker.h"
+#include "Ranking.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -458,6 +459,8 @@ std::cout
 << " \n\n";
 
 GrandPrixFinished = true;
+
+UpdateRankings();
 
     PauseGame();
     ChampionCommentary(*winner);

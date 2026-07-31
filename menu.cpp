@@ -3,6 +3,7 @@
 #include "fightnight.h"
 #include "Bank.h"
 #include "GrandPrix.h"
+#include "Ranking.h"
 #include <iostream>
 
 void menu()
@@ -17,14 +18,27 @@ void menu()
     while (true)
     {
         std::cout<<"\n";
-        std::cout<<"1. View Roster"<<std::endl;
-        std::cout<<"2. Fight Night"<<std::endl;
-        std::cout<<"3. View Grand Prix Standings\n";
-        std::cout<<"4. Exit"<<std::endl;
+        if(!GrandPrixFinished)
+        {
+            std::cout<<"1. View Roster"<<std::endl;
+            std::cout<<"2. Fight Night"<<std::endl;
+            std::cout<<"3. View Grand Prix Standings\n";
+            std::cout<<"4. Exit"<<std::endl;
+        }
+        else
+        {
+            std::cout<<"1. View Roster\n";
+            std::cout<<"2. Fight Night\n";
+            std::cout<<"3. Official Rankings\n";
+            std::cout<<"4. Grand Prix History\n";
+            std::cout<<"5. Exit\n";
+        }
         std::cout<<"\n";
         std::cout<<"Choice: ";
         std::cin>>p;
 
+        if(!GrandPrixFinished)
+        {
         switch (p)
         {
         case 1:
@@ -47,6 +61,37 @@ void menu()
             std::cout<<"Invalid Request\n";
             break;
         }
-    }
+        }
+
+        else
+        {
+            switch(p)
+            {
+                case 1:
+                ViewRoster();
+                break;
+
+                case 2:
+                FightNight();
+                break;
+
+                case 3:
+                ViewRankings();
+                break;
+
+                case 4:
+                ViewStandings();
+                break;
+
+                case 5:
+                std::cout<<"\nGood-Bye\n\n";
+                return;
+
+                default:
+                std::cout<<"Invalid Request\n";
+                break;
+            }
+        }
+    };
     
 }
