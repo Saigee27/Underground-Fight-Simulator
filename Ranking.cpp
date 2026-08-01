@@ -1,5 +1,5 @@
 #include "Ranking.h"
-#include "fightnight.h"
+#include "Fighter.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -79,4 +79,23 @@ void ViewRankings()
         std::cout
         << "--------------------------------------\n";
     }
+
+   
+}
+
+
+
+Match SelectMatch()
+{
+    Match match;
+
+    match.Fighter1 = rand() % roster.size();
+
+    do
+    {
+        match.Fighter2 = rand() % roster.size();
+    }
+    while(match.Fighter1 == match.Fighter2);
+
+    return match;
 }
