@@ -6,6 +6,7 @@
 #include "Popularity.h"
 #include "GrandPrix.h"
 #include "Bookmaker.h"
+#include "fight-history.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -403,6 +404,23 @@ else
     }
 }
 
+FightResult result;
+result.Fighter1 = &f1;
+result.Fighter2 = &f2;
+result.Winner = winner;
+result.Loser = loser;
+
+if(KOFinish)
+{
+    result.method = Method::KO;
+}
+else
+{
+    result.method = Method::Decision;
+}
+result.event = Event::Grand_Prix;
+result.Round = 0;
+RecordFights(result);
 
 std::cout
 << "\n===== FINAL RESULT =====\n\n";

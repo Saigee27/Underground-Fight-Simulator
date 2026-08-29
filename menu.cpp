@@ -4,6 +4,7 @@
 #include "Bank.h"
 #include "GrandPrix.h"
 #include "Ranking.h"
+#include "fight-history.h"
 #include <iostream>
 
 void menu()
@@ -23,7 +24,8 @@ void menu()
             std::cout<<"1. View Roster"<<std::endl;
             std::cout<<"2. Fight Night"<<std::endl;
             std::cout<<"3. View Grand Prix Standings\n";
-            std::cout<<"4. Exit"<<std::endl;
+            std::cout<<"4. View Fight History\n";
+            std::cout<<"5. Exit"<<std::endl;
         }
         else
         {
@@ -31,7 +33,8 @@ void menu()
             std::cout<<"2. Fight Night\n";
             std::cout<<"3. Official Rankings\n";
             std::cout<<"4. Grand Prix History\n";
-            std::cout<<"5. Exit\n";
+            std::cout<<"5. View Fight History\n";
+            std::cout<<"6. Exit\n";
         }
         std::cout<<"\n";
         std::cout<<"Choice: ";
@@ -54,6 +57,10 @@ void menu()
             break;
 
         case 4:
+        showFightHistory();
+            break;
+
+        case 5:
             std::cout<<"\nGood-Bye\n\n";
             return;
 
@@ -84,6 +91,10 @@ void menu()
                 break;
 
                 case 5:
+                showFightHistory();
+                break;
+
+                case 6:
                 std::cout<<"\nGood-Bye\n\n";
                 return;
 
