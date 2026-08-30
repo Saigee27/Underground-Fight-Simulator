@@ -8,6 +8,7 @@
 #include "GrandPrix.h"
 #include "Bookmaker.h"
 #include "Ranking.h"
+#include "fight-history.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -376,6 +377,24 @@ else
         Upset = true;
     }
 }
+
+
+FightResult result;
+result.event = Event::Ranked;
+result.Fighter1 = &f1;
+result.Fighter2 = &f2;
+result.Winner = winner;
+result.Loser = loser;
+result.Round = 0;
+if(KOFinish)
+{
+    result.method = Method::KO;
+}
+else
+{
+    result.method = Method::Decision;
+}
+RecordFights(result);
 
 
 std::cout
