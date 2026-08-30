@@ -2,6 +2,7 @@
 #include "Fighter.h"
 #include "menu.h"
 #include "Timeline.h"
+#include "GrandPrix.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -27,6 +28,8 @@ void Show()
     Show();
     
     CreateRoster();
+
+    GenerateGrandPrixSchedule();
     
     menu();
     

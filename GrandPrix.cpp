@@ -10,9 +10,12 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 extern std::vector <Fighter> roster;
 std::vector<std::pair<int,int>> GrandPrixMatches;
+std::vector<std::pair<int,int>> GrandPrixSchedule;
+int GrandPrixFightIndex = 0;
 
 
 void ViewStandings()
@@ -51,6 +54,81 @@ void ViewStandings()
     }
     std::cout<<"\n";
 }
+
+void GenerateGrandPrixSchedule()
+{
+    GrandPrixSchedule.clear();
+    GrandPrixFightIndex = 0;
+
+    std::vector<int> fighters;
+
+    for (int i = 0; i < roster.size(); i++)
+    {
+        fighters.push_back(i);
+    }
+
+    int fixed = fighters[0];
+
+    for (int round = 0; round < 3; round++)
+    {
+        GrandPrixSchedule.push_back(
+            {fixed, fighters[9]}
+        );
+
+        GrandPrixSchedule.push_back(
+            {fighters[1], fighters[8]}
+        );
+
+        GrandPrixSchedule.push_back(
+            {fighters[2], fighters[7]}
+        );
+
+        GrandPrixSchedule.push_back(
+            {fighters[3], fighters[6]}
+        );
+
+        GrandPrixSchedule.push_back(
+            {fighters[4], fighters[5]}
+        );
+
+        int last = fighters.back();
+
+        for (int i = 9; i > 1; i--)
+        {
+            fighters[i] = fighters[i - 1];
+        }
+
+        fighters[1] = last;
+    }
+
+    std::random_device rd;
+    std::mt19937 generator(rd());
+
+    std::shuffle(
+        GrandPrixSchedule.begin(),
+        GrandPrixSchedule.end(),
+        generator
+    );
+}
+
+
+bool GetNextGrandPrixMatch(int& fighter1, int& fighter2)
+{
+    if (GrandPrixFightIndex >= GrandPrixSchedule.size())
+    {
+        return false;
+    }
+
+    fighter1 = GrandPrixSchedule[GrandPrixFightIndex].first;
+    fighter2 = GrandPrixSchedule[GrandPrixFightIndex].second;
+
+    GrandPrixFightIndex++;
+
+    return true;
+}
+
+
+
 
 bool HasFoughtBefore(int fighter1, int fighter2)
 {

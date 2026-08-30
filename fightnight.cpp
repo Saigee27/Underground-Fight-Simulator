@@ -46,29 +46,11 @@ void FightNight()
         return;
     }
 
-    int attempts = 0;
-
-do
+if (!GetNextGrandPrixMatch(fighter1, fighter2))
 {
-    fighter1 = rand() % roster.size();
-    fighter2 = rand() % roster.size();
-
-    attempts++;
-
-    if (attempts > 1000)
-    {
-        std::cout << "\nNo valid fights remaining!\n";
-        return;
-    }
-
+    std::cout << "\nNo Grand Prix fights remaining!\n";
+    return;
 }
-while
-(
-    fighter1 == fighter2 ||
-    roster[fighter1].SeasonFights >= 3 ||
-    roster[fighter2].SeasonFights >= 3 ||
-    HasFoughtBefore(fighter1,fighter2)
-);
 
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
