@@ -26,6 +26,7 @@ class Fighter
     int KOLosses = 0;
 
     int Ranking=0;
+    double RankedScore=0.0;
 };
 
 extern std::vector<Fighter> roster;

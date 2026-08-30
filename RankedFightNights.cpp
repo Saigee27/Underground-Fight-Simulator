@@ -37,6 +37,18 @@ void RankedFightNight()
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
     
+    double OpponentStrength1 = CalculateFighterStrength(f2);
+    double OpponentStrength2 = CalculateFighterStrength(f1);
+
+std::cout << "\n===== OPPONENT STRENGTH TEST =====\n";
+
+std::cout << f1.Name
+          << " opponent strength: "
+          << OpponentStrength1 << "\n";
+
+std::cout << f2.Name
+          << " opponent strength: "
+          << OpponentStrength2 << "\n";
 
     std::cout<<"\n====================\n\n";
     ShowDate();
@@ -378,6 +390,22 @@ else
     }
 }
 
+double WinnerOpponentStrength;
+if(winner == &f1)
+{
+    WinnerOpponentStrength = OpponentStrength1;
+}
+else{
+    WinnerOpponentStrength = OpponentStrength2;
+}
+
+double RankingGain = 10.0 + (WinnerOpponentStrength / 10.0);
+
+std::cout << "Winner opponent strength: "
+          << WinnerOpponentStrength << "\n";
+
+std::cout << "Ranking gain: "
+          << RankingGain << "\n";
 
 FightResult result;
 result.event = Event::Ranked;

@@ -5,6 +5,7 @@
 extern std::vector <Fighter*> Rankings;
 void UpdateRankings();
 void ViewRankings();
+double CalculateFighterStrength(const Fighter& man);
 struct Match
 {
     int Fighter1;

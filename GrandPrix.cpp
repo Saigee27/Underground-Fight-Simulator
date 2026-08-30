@@ -56,7 +56,7 @@ bool HasFoughtBefore(int fighter1, int fighter2)
 {
     for (const auto& match : GrandPrixMatches)
     {
-        if ((match.first == fighter1 && match.second == fighter2) || (match.first == fighter2 && match.second == fighter2)) 
+        if ((match.first == fighter1 && match.second == fighter2) || (match.first == fighter2 && match.second == fighter1)) 
         {
             return true;
         }
@@ -460,7 +460,7 @@ std::cout
 
 GrandPrixFinished = true;
 
-UpdateRankings();
+
 
     PauseGame();
     ChampionCommentary(*winner);
@@ -491,6 +491,7 @@ else
     
 }
 
+UpdateRankings();
 
 std::cout << "\n=============================\n";
 

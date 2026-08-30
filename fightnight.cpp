@@ -43,6 +43,7 @@ void FightNight()
     {
         ViewStandings();
         CrownChampion();
+        return;
     }
 
     int attempts = 0;

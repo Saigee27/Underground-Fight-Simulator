@@ -99,3 +99,13 @@ Match SelectMatch()
 
     return match;
 }
+
+double CalculateFighterStrength(const Fighter& man)
+{
+    int totalFighters = roster.size();
+    if (totalFighters <= 1)
+    {
+        return 0;
+    }
+    return 100.0 * (totalFighters - man.Ranking) / (totalFighters - 1);
+}
