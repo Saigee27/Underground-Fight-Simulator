@@ -5,6 +5,7 @@
 #include "GrandPrix.h"
 #include "Ranking.h"
 #include "fight-history.h"
+#include "Timeline.h"
 #include <iostream>
 
 void menu()
@@ -14,13 +15,17 @@ void menu()
     std::cout<<"\n\n";
     std::cout<<"Balance: $"<<Money<<std::endl;
     int p=0;
-    std::cout<<"\n===== THE PIT ===== \n\n";
+    std::cout<<"\n===== THE PIT ===== \n";
 
     while (true)
     {
-        std::cout<<"\n";
+        
         if(!GrandPrixFinished)
         {
+            std::cout<<"\n====================\n";
+            ShowDate();
+            std::cout<<"\n====================\n\n";
+            
             std::cout<<"1. View Roster"<<std::endl;
             std::cout<<"2. Fight Night"<<std::endl;
             std::cout<<"3. View Grand Prix Standings\n";

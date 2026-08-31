@@ -49,7 +49,6 @@ void DisplayOdds(Fighter f1,Fighter f2, BettingOdds odds)
 {
     std::cout<<std::fixed<<std::setprecision(2);
 
-    std::cout<<"\n===== BOOKMAKER =====\n\n";
 
     std::cout<<f1.Name<<"\n";
     std::cout<<"Rating : "<<odds.Rating1<<"\n";

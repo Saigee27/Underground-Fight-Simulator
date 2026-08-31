@@ -57,10 +57,9 @@ if (!GetNextGrandPrixMatch(fighter1, fighter2))
 
     
 
-    std::cout<<"\n====================\n\n";
-    ShowDate();
-    std::cout<<"\nBalance: $"<<Money<<"\n";
-    std::cout<<"\n====================\n\n";
+    std::cout<<"\n====================\n";
+    std::cout<<"Balance: $"<<Money<<"\n";
+    std::cout<<"====================\n\n";
 
     std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
@@ -120,7 +119,10 @@ if (!GetNextGrandPrixMatch(fighter1, fighter2))
 
 
 
-    int betamount=0;
+int betamount=0;
+std::cout<<"\n====================\n";
+std::cout<<"Available Balance: $"<<Money<<"\n";
+std::cout<<"====================\n\n";
 while(true)
 {
     std::cout << "Bet Amount: $";
