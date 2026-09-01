@@ -226,7 +226,6 @@ void ChampionshipFight(int fighter1, int fighter2)
     std::cout<<"\nBalance: $"<<Money<<"\n";
     std::cout<<"\n====================\n\n";
 
-    std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
     BettingOdds odds = GenerateOdds(f1, f2);
