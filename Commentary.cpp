@@ -186,7 +186,7 @@ void ChampionCommentary(Fighter& winner)
         message.replace(pos, 8, winner.Name);
     }
 
-    std::cout << "\n🏆 CHAMPIONSHIP MOMENT 🏆\n\n";
+    std::cout << "\n CHAMPIONSHIP MOMENT \n\n";
     std::cout << message << "\n\n";
 }
 

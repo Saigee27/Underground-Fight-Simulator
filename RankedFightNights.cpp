@@ -9,6 +9,7 @@
 #include "Bookmaker.h"
 #include "Ranking.h"
 #include "fight-history.h"
+#include "knockoutsystem.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -199,25 +200,21 @@ std::cin.ignore(1000,'\n');
         int performance2 = BaseRating2 + form2;
 
         int diff = abs(performance1 - performance2);
-
+        double koChance = CalculateKOChance(diff);
+        int ko = rand() % 100 + 1;
 
 
         if (performance1 > performance2)
         {
             
 
-            if (diff >= 50)
+            if (ko <= koChance)
             {
-                int ko = rand() % 100 + 1;
-                if (ko <= 40)
-                {
                       std::cout << "\nKNOCKOUT!\n";
                         KOCommentary(f1, f2);
                       winner = &f1;
                       KOFinish=true;
                       break;
-                    
-                }
             }
 
             RoundsWon1++;
@@ -235,19 +232,13 @@ std::cin.ignore(1000,'\n');
         else if(performance1 < performance2)
         {
             
-            if (diff>=50)
-            {
-                int ko = rand() % 100 + 1;
-                
-                if(ko<=40)
-                {
-                    
+            if (ko <= koChance)
+            {       
                     std::cout << "\nKNOCKOUT!\n";
                     KOCommentary(f2, f1);
                     winner=&f2;
                     KOFinish=true;
                     break;
-                }
             }
 
             RoundsWon2++;
