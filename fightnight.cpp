@@ -190,7 +190,8 @@ std::cin.ignore(1000,'\n');
         int performance2 = BaseRating2 + form2;
 
         int diff = abs(performance1 - performance2);
-        double koChance = CalculateKOChance(diff);
+        int baseDiff = abs(BaseRating1 - BaseRating2);
+        double koChance = CalculateKOChance(diff, baseDiff);
         int ko = rand() % 100 + 1;
 
 

@@ -1,9 +1,10 @@
 #include "knockoutsystem.h"
-double CalculateKOChance(int performanceDiff)
+double CalculateKOChance(int performanceDiff, int baseDiff)
 {
     double baseChance = 5.0;
-    double bonus = performanceDiff * 0.1;
-    double koChance = bonus + baseChance;
+    double performanceBonus = performanceDiff * 0.1;
+    double baseBonus = baseDiff * 0.05;
+    double koChance = baseBonus + performanceBonus + baseChance;
 
     if(koChance < 2.0)
     {
