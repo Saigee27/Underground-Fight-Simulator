@@ -1,7 +1,9 @@
 #include "Bank.h"
+#include "fightnight.h"
+#include "Fighter.h"
 #include <iostream>
 
-int Money = 1000;
+int Money = 5000;
 bool GrandPrixFinished = false;
 void BankMenu()
 {
@@ -9,3 +11,4 @@ void BankMenu()
     std::cout << "Balance: $" << Money << "\n";
     std::cout<<"\n==========\n\n";
 }
+

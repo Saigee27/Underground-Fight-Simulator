@@ -253,6 +253,9 @@ void ChampionshipFight(int fighter1, int fighter2)
     bool KOFinish=false;
 
 
+    const int MIN_BET = 1000;
+
+
     int betchoice=0;
     std::cout << "Place your bet:\n\n";
     
@@ -309,9 +312,9 @@ while(true)
         continue;
     }
 
-    if (betamount <= 0)
+    if (betamount < MIN_BET)
     {
-        std::cout << "Invalid Bet!\n";
+        std::cout << "\nMinimum bet is $1000!\n\n";
         continue;
     }
 
