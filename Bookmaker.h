@@ -14,9 +14,9 @@ struct BettingOdds
     float Odds2;
 };
 
-int CalculatePowerRating(Fighter fighter);
+int CalculateMarketScore(Fighter fighter);
 
-float CalculateProbability(int rating,int total);
+float CalculateProbability(int rating1, int rating2);
 
 float CalculateOdds(float probability);
 
