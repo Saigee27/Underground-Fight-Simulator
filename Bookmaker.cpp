@@ -57,7 +57,22 @@ float CalculateProbability(int rating1, int rating2)
 float CalculateOdds(float probability)
 {
     float bookmakerProbability = probability * 1.05f;
-    return 1.0f/probability;
+    return 1.0f/bookmakerProbability;
+}
+
+float ApplyExperienceUncertainty(float probability, int totalFights)
+{
+    float confidence;
+
+    if(totalFights>=10)
+    {
+        confidence=1.0f;
+    }
+    else
+    {
+        confidence=(float)totalFights / 10.0f;
+    }
+    return 0.5f + (probability - 0.5f) * confidence;
 }
 
 BettingOdds GenerateOdds(Fighter f1,Fighter f2)
@@ -67,19 +82,22 @@ BettingOdds GenerateOdds(Fighter f1,Fighter f2)
     data.Rating1 = CalculateMarketScore(f1);
     data.Rating2 = CalculateMarketScore(f2);
 
-    int Total = data.Rating1 + data.Rating2;
-
     data.Probability1 =
         CalculateProbability(data.Rating1,data.Rating2);
 
     data.Probability2 =
         CalculateProbability(data.Rating2,data.Rating1);
 
-    data.Odds1 =
-        CalculateOdds(data.Probability1);
+    int fights1 = f1.Wins + f1.Losses;
+    int fights2 = f2.Wins + f2.Losses;
 
-    data.Odds2 =
-        CalculateOdds(data.Probability2);
+    int totalFights = fights1 + fights2;
+
+    data.Probability1 = ApplyExperienceUncertainty(data.Probability1, totalFights);
+    data.Probability2 = ApplyExperienceUncertainty(data.Probability2, totalFights);
+
+    data.Odds1 = CalculateOdds(data.Probability1);
+    data.Odds2 = CalculateOdds(data.Probability2);
 
     return data;
 }

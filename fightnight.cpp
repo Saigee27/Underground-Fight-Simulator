@@ -60,7 +60,7 @@ if (!GetNextGrandPrixMatch(fighter1, fighter2))
 
     std::cout<<"\n====================\n";
     std::cout<<"Balance: $"<<Money<<"\n";
-    std::cout<<"====================\n\n";
+    std::cout<<"====================\n";
 
     std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";

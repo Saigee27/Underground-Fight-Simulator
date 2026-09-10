@@ -54,7 +54,7 @@ std::cout << f2.Name
     std::cout<<"\n====================\n\n";
     ShowDate();
     std::cout<<"\nBalance: $"<<Money<<"\n";
-    std::cout<<"\n====================\n\n";
+    std::cout<<"\n====================\n";
 
     std::cout<<"\n===== RANKED MAIN EVENT =====\n\n";
     std::cout
