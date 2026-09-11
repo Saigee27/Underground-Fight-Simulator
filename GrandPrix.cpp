@@ -232,17 +232,6 @@ void ChampionshipFight(int fighter1, int fighter2)
 
     DisplayOdds(f1, f2, odds);
 
-    std::cout << f1.Name << "\n";
-    std::cout << "STR: " << f1.Strength << "\n";
-    std::cout << "STA: " << f1.Stamina << "\n";
-    std::cout << "TGH: " << f1.Toughness << "\n\n";
-
-    std::cout << f2.Name << "\n";
-    std::cout << "STR: " << f2.Strength << "\n";
-    std::cout << "STA: " << f2.Stamina << "\n";
-    std::cout << "TGH: " << f2.Toughness << "\n\n";
-
-
     int BaseRating1 = f1.Strength + f1.Stamina + f1.Toughness;
     int BaseRating2 = f2.Strength + f2.Stamina + f2.Toughness;
 

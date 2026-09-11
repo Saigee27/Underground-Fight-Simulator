@@ -527,14 +527,18 @@ PauseGame();
 
     if(chosenfighter==&f1 && winner==&f1)
 {
-    Money += (int)(betamount*odds.Odds1);
+    int payout = static_cast<int>(betamount * odds.Odds1);
+    Money += payout;
     std::cout << "\nBET WON!\n";
+    std::cout << "Earned $" << payout << '\n';
 }
 
 else if (chosenfighter==&f2 && winner==&f2)
 {
-    Money += (int)(betamount*odds.Odds2);
+    int payout = static_cast<int>(betamount * odds.Odds2);
+    Money += payout;
     std::cout << "\nBET WON!\n";
+    std::cout << "Earned $" << payout << '\n';
 }
 
 else
