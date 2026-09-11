@@ -1,6 +1,31 @@
 #include "Bookmaker.h"
 #include "iomanip"
 #include "cmath"
+
+int CalculatePublicPerception(Fighter fighter)
+{
+    int perception = fighter.Popularity;
+
+    if (fighter.WinStreak >= 3)
+    {
+        perception += 10;
+    }
+    if (fighter.KOWins >= 3)
+    {
+        perception += 5;
+    }
+    if (perception > 100)
+    {
+        perception = 100;
+    }
+    if (perception < 0)
+    {
+        perception = 0;
+    }
+
+    return perception;
+}
+
 int CalculateMarketScore(Fighter fighter)
 {
     int totalFights = fighter.Wins + fighter.Losses;
@@ -32,6 +57,8 @@ int CalculateMarketScore(Fighter fighter)
     {
         streakFactor = 1.0f;
     }
+
+    int publicPerception = CalculatePublicPerception(fighter);
 
     int popularityScore = (int)(fighter.Popularity * 0.40f);
 
