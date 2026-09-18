@@ -2,6 +2,27 @@
 #include "iomanip"
 #include "cmath"
 
+
+Bettingmarket GenerateMarket()
+{
+    Bettingmarket market;
+    market.MoneyonFighter1 = rand() % 9001 + 1000;
+    market.MoneyonFighter2 = rand() % 9001 + 1000;
+    return market;
+}
+
+float CalculateMarketShare(int moneyonFighter, int totalMoney)
+{
+    return (float)moneyonFighter / totalMoney;
+} 
+
+float AdjustProbabilityForMarket(float probability, float marketshare)
+{
+    return 
+    (probability * 0.70f) + (marketshare * 0.30f);
+
+}
+
 int CalculatePublicPerception(Fighter fighter)
 {
     int perception = fighter.Popularity;
@@ -122,6 +143,37 @@ BettingOdds GenerateOdds(Fighter f1,Fighter f2)
 
     data.Probability1 = ApplyExperienceUncertainty(data.Probability1, totalFights);
     data.Probability2 = ApplyExperienceUncertainty(data.Probability2, totalFights);
+
+    Bettingmarket market = GenerateMarket();
+
+    int totalMoney =
+        market.MoneyonFighter1 +
+        market.MoneyonFighter2;
+
+    float marketShare1 =
+        CalculateMarketShare(
+            market.MoneyonFighter1,
+            totalMoney
+        );
+
+    float marketShare2 =
+        CalculateMarketShare(
+            market.MoneyonFighter2,
+            totalMoney
+        );
+
+    data.Probability1 =
+        AdjustProbabilityForMarket(
+            data.Probability1,
+            marketShare1
+        );
+
+    data.Probability2 =
+        AdjustProbabilityForMarket(
+            data.Probability2,
+            marketShare2
+        );
+
 
     data.Odds1 = CalculateOdds(data.Probability1);
     data.Odds2 = CalculateOdds(data.Probability2);

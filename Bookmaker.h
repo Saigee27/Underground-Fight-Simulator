@@ -14,7 +14,19 @@ struct BettingOdds
     float Odds2;
 };
 
+struct Bettingmarket
+{
+    int MoneyonFighter1;
+    int MoneyonFighter2;
+};
+
+Bettingmarket GenerateMarket();
+
 int CalculateMarketScore(Fighter fighter);
+
+float CalculateMarketShare(int moneyonFighter, int totalMoney);
+
+float AdjustProbabilityForMarket(float probability, float marketshare);
 
 float CalculateProbability(int rating1, int rating2);
 
