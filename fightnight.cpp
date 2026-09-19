@@ -65,8 +65,8 @@ if (!GetNextGrandPrixMatch(fighter1, fighter2))
     std::cout<<"\n===== FIGHT NIGHT =====\n\n";
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
-    BettingOdds odds = GenerateOdds(f1,f2);
-
+    Bettingmarket market = CreateBettingMarket();
+    BettingOdds odds = GenerateOdds(f1,f2,market);
     DisplayOdds(f1,f2,odds);
 
 
@@ -147,8 +147,14 @@ while(true)
 }
 std::cin.ignore(1000,'\n');
 
-
-
+    if(betchoice == 1)
+{
+    market.MoneyonFighter1 += betamount;
+}
+else
+{
+    market.MoneyonFighter2 += betamount;
+}
     Fighter* chosenfighter;
     if(betchoice==1)
     {
@@ -163,8 +169,6 @@ std::cin.ignore(1000,'\n');
         std::cout << "Invalid Choice!\n";
         return;
     }
-
-
 
 
     for (int round=1; round<=3; round++)

@@ -3,7 +3,7 @@
 #include "cmath"
 
 
-Bettingmarket GenerateMarket()
+Bettingmarket CreateBettingMarket()
 {
     Bettingmarket market;
     market.MoneyonFighter1 = rand() % 9001 + 1000;
@@ -81,7 +81,7 @@ int CalculateMarketScore(Fighter fighter)
 
     int publicPerception = CalculatePublicPerception(fighter);
 
-    int popularityScore = (int)(fighter.Popularity * 0.40f);
+    int popularityScore = (int)(publicPerception * 0.40f);
 
     int winScore = (int)(winRate * 35.0f);
 
@@ -123,7 +123,7 @@ float ApplyExperienceUncertainty(float probability, int totalFights)
     return 0.5f + (probability - 0.5f) * confidence;
 }
 
-BettingOdds GenerateOdds(Fighter f1,Fighter f2)
+BettingOdds GenerateOdds(Fighter f1,Fighter f2, Bettingmarket market)
 {
     BettingOdds data;
 
@@ -144,7 +144,6 @@ BettingOdds GenerateOdds(Fighter f1,Fighter f2)
     data.Probability1 = ApplyExperienceUncertainty(data.Probability1, totalFights);
     data.Probability2 = ApplyExperienceUncertainty(data.Probability2, totalFights);
 
-    Bettingmarket market = GenerateMarket();
 
     int totalMoney =
         market.MoneyonFighter1 +

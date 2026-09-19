@@ -228,9 +228,9 @@ void ChampionshipFight(int fighter1, int fighter2)
 
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
-    BettingOdds odds = GenerateOdds(f1, f2);
-
-    DisplayOdds(f1, f2, odds);
+    Bettingmarket market = CreateBettingMarket();
+    BettingOdds odds = GenerateOdds(f1,f2,market);
+    DisplayOdds(f1,f2,odds);
 
     int BaseRating1 = f1.Strength + f1.Stamina + f1.Toughness;
     int BaseRating2 = f2.Strength + f2.Stamina + f2.Toughness;
@@ -311,7 +311,14 @@ while(true)
 }
 std::cin.ignore(1000,'\n');
 
-
+    if(betchoice == 1)
+{
+    market.MoneyonFighter1 += betamount;
+}
+else
+{
+    market.MoneyonFighter2 += betamount;
+}
 
     Fighter* chosenfighter;
     if(betchoice==1)

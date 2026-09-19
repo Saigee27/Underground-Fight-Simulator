@@ -20,7 +20,7 @@ struct Bettingmarket
     int MoneyonFighter2;
 };
 
-Bettingmarket GenerateMarket();
+Bettingmarket CreateBettingMarket();
 
 int CalculateMarketScore(Fighter fighter);
 
@@ -32,7 +32,7 @@ float CalculateProbability(int rating1, int rating2);
 
 float CalculateOdds(float probability);
 
-BettingOdds GenerateOdds(Fighter f1,Fighter f2);
+BettingOdds GenerateOdds(Fighter f1,Fighter f2, Bettingmarket market);
 
 void DisplayOdds(Fighter f1,Fighter f2, BettingOdds odds);
 

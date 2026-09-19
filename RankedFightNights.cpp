@@ -78,8 +78,8 @@ std::cout << f2.Name
         std::cout << "Official Ranked Bout\n\n";
     }
 
-    BettingOdds odds = GenerateOdds(f1,f2);
-
+    Bettingmarket market = CreateBettingMarket();
+    BettingOdds odds = GenerateOdds(f1,f2,market);
     DisplayOdds(f1,f2,odds);
 
     std::cout << f1.Name << "\n";
@@ -167,7 +167,14 @@ while(true)
 }
 std::cin.ignore(1000,'\n');
 
-
+if(betchoice == 1)
+{
+    market.MoneyonFighter1 += betamount;
+}
+else
+{
+    market.MoneyonFighter2 += betamount;
+}
 
     Fighter* chosenfighter;
     if(betchoice==1)
