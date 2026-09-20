@@ -20,7 +20,7 @@ struct Bettingmarket
     int MoneyonFighter2;
 };
 
-Bettingmarket CreateBettingMarket();
+Bettingmarket CreateBettingMarket(Fighter f1,Fighter f2);
 
 int CalculateMarketScore(Fighter fighter);
 

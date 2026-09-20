@@ -228,7 +228,7 @@ void ChampionshipFight(int fighter1, int fighter2)
 
     std::cout<<f1.Name<<" Vs "<<f2.Name<<"\n\n";
 
-    Bettingmarket market = CreateBettingMarket();
+    Bettingmarket market = CreateBettingMarket(f1,f2);
     BettingOdds odds = GenerateOdds(f1,f2,market);
     DisplayOdds(f1,f2,odds);
 

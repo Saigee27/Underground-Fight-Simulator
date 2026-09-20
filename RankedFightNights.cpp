@@ -78,7 +78,7 @@ std::cout << f2.Name
         std::cout << "Official Ranked Bout\n\n";
     }
 
-    Bettingmarket market = CreateBettingMarket();
+    Bettingmarket market = CreateBettingMarket(f1,f2);
     BettingOdds odds = GenerateOdds(f1,f2,market);
     DisplayOdds(f1,f2,odds);
 

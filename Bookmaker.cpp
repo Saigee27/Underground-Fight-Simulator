@@ -3,13 +3,7 @@
 #include "cmath"
 
 
-Bettingmarket CreateBettingMarket()
-{
-    Bettingmarket market;
-    market.MoneyonFighter1 = rand() % 9001 + 1000;
-    market.MoneyonFighter2 = rand() % 9001 + 1000;
-    return market;
-}
+
 
 float CalculateMarketShare(int moneyonFighter, int totalMoney)
 {
@@ -121,6 +115,25 @@ float ApplyExperienceUncertainty(float probability, int totalFights)
         confidence=(float)totalFights / 10.0f;
     }
     return 0.5f + (probability - 0.5f) * confidence;
+}
+
+Bettingmarket CreateBettingMarket(Fighter f1, Fighter f2)
+{
+    Bettingmarket market;
+
+    int perception1 = CalculatePublicPerception(f1);
+    int perception2 = CalculatePublicPerception(f2);
+
+    int baseMoney1 = perception1 * 100;
+    int baseMoney2 = perception2 * 100;
+
+    int random1 = rand() % 5001;
+    int random2 = rand() % 5001;
+
+    market.MoneyonFighter1 = baseMoney1 + random1;
+    market.MoneyonFighter2 = baseMoney2 + random2;
+
+    return market;
 }
 
 BettingOdds GenerateOdds(Fighter f1,Fighter f2, Bettingmarket market)
