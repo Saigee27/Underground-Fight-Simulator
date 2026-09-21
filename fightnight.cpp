@@ -43,7 +43,6 @@ void FightNight()
     if (CompleteSeason())
     {
         ViewStandings();
-        CrownChampion();
         return;
     }
 
