@@ -160,3 +160,26 @@ bool CompleteSeason()
     }
     return true;
 }
+
+std::vector <int> GetTopFour()
+{
+    std::vector <int> indices;
+    for(int i=0; i<roster.size(); i++)
+    {
+        indices.push_back(i);
+    }
+    std::sort(indices.begin(), indices.end(), [](int a, int b)
+    {
+        if(roster[a].SeasonWins == roster[b].SeasonWins)
+        {
+            if(roster[a].SeasonLosses == roster[b].SeasonLosses)
+            {
+                return roster[a].Popularity > roster[b].Popularity;
+            }
+            return roster[a].SeasonLosses < roster[b].SeasonLosses;
+        }
+        return roster[a].SeasonWins > roster[b].SeasonWins;
+    });
+    indices.resize(4);
+    return indices;
+}

@@ -43,6 +43,7 @@ void FightNight()
     if (CompleteSeason())
     {
         ViewStandings();
+        std::vector<int> topfour = GetTopFour();
         return;
     }
 
