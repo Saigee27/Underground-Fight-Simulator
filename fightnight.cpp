@@ -433,13 +433,13 @@ else if (winner->WinStreak >= 7)
 
 if (loser->LoseStreak == 3)
 {
-    std::cout << "⚠ "
+    std::cout
               << loser->Name
               << " has now lost three fights in a row!\n";
 }
 else if (loser->LoseStreak >= 5)
 {
-    std::cout << "🚨 "
+    std::cout
               << loser->Name
               << "'s career is in serious trouble after "
               << loser->LoseStreak
