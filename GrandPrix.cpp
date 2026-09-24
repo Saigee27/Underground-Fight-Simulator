@@ -161,6 +161,97 @@ bool CompleteSeason()
     return true;
 }
 
+int RunSemiFinal(int fighter1, int fighter2)
+{
+    Fighter& f1 = roster[fighter1];
+    Fighter& f2 = roster[fighter2];
+
+    std::cout << "\n============================\n";
+    std::cout << "   GRAND PRIX SEMIFINAL\n";
+    std::cout << "============================\n\n";
+
+    ShowDate();
+
+    std::cout << "\nBalance: $" << Money << "\n";
+
+    std::cout << "\n====================\n\n";
+    std::cout << f1.Name << " Vs " << f2.Name << "\n\n";
+
+    Bettingmarket market = CreateBettingMarket(f1,f2);
+    BettingOdds odds = GenerateOdds(f1,f2,market);
+
+    DisplayOdds(f1,f2,odds);
+
+    const int MIN_BET = 1000;
+    int betchoice = 0;
+    while (true)
+    {
+        std::cout << "\nBet on:\n";
+        std::cout << "1. " << f1.Name << "\n";
+        std::cout << "2. " << f2.Name << "\n";
+        std::cout << "Choice: ";
+        std::cin>>betchoice;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+            std::cout << "Invalid choice. Enter 1 or 2.\n";
+            continue;
+        }
+
+        if (betchoice != 1 && betchoice != 2)
+        {
+            std::cout << "Invalid choice. Enter 1 or 2.\n";
+            continue;
+        }
+        break;
+    }
+    int betamount = 0;
+
+    while(true)
+    {
+        std::cout << "\nBalance: $" << Money << "\n";
+        std::cout << "Enter bet amount (Minimum $" << MIN_BET << "): $";
+        std::cin>>betamount;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "Invalid amount.\n";
+            continue;
+        }
+
+        if (betamount < MIN_BET)
+        {
+            std::cout << "Minimum bet is $" << MIN_BET << ".\n";
+            continue;
+        }
+
+        if (betamount > Money)
+        {
+            std::cout << "Insufficient balance.\n";
+            continue;
+        }
+        break;
+    }
+    std::cin.ignore(1000,'\n');
+    Fighter* chosenfighter;
+
+    if(betchoice==1)
+    {
+        market.MoneyonFighter1 += betamount;
+        chosenfighter = &f1;
+    }
+    else
+    {
+        market.MoneyonFighter2 += betamount;
+        chosenfighter = &f2;
+    }
+    Money -= betamount;
+}
+
 std::vector <int> GetTopFour()
 {
     std::vector <int> indices;
