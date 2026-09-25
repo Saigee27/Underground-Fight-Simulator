@@ -166,6 +166,9 @@ int RunSemiFinal(int fighter1, int fighter2)
     Fighter& f1 = roster[fighter1];
     Fighter& f2 = roster[fighter2];
 
+    int BaseRating1 = f1.Strength + f1.Stamina + f1.Toughness;
+    int BaseRating2 = f2.Strength + f2.Stamina + f2.Toughness;
+
     std::cout << "\n============================\n";
     std::cout << "   GRAND PRIX SEMIFINAL\n";
     std::cout << "============================\n\n";
@@ -250,6 +253,171 @@ int RunSemiFinal(int fighter1, int fighter2)
         chosenfighter = &f2;
     }
     Money -= betamount;
+
+
+    int performance1 = f1.Strength + f1.Stamina + f1.Toughness;
+    int performance2 = f2.Strength + f2.Stamina + f2.Toughness;
+    int performanceDiff = performance1 - performance2;
+    int baseDiff = f1.Strength - f2.Strength;
+
+    double koChance = CalculateKOChance(performanceDiff,baseDiff);
+
+    bool fightOver = false;
+    bool KOFinish = false;
+    Fighter* winner = nullptr;
+
+    for(int round=1; round<=3; round++)
+    {
+        std::cout << "\n========== ROUND " << round << " ==========\n";
+
+        int roll = rand() % 100;
+
+        if(roll < koChance)
+        {
+            winner = (rand() % 2 == 0) ? &f1 : &f2;
+            fightOver = true;
+            KOFinish = true;
+            std::cout << "\nKNOCKOUT!\n";
+            std::cout << winner->Name << " wins by KO!\n";
+        }
+        break;
+    }
+    std::cout << "Both fighters survive Round " << round << ".\n";
+    if(!fightOver)
+    {
+        winner = (rand() % 2 == 0) ? &f1 : &f2;
+        std::cout << "\nFIGHT GOES TO DECISION!\n";
+        std::cout << winner->Name << " wins by decision!\n";
+    }
+
+    Fighter* loser = (winner == &f1) ? &f2 : &f1;
+
+    if (winner == &f1)
+    {
+        f1.Wins++;
+        f2.Losses++;
+
+        f1.SeasonWins++;
+        f2.SeasonLosses++;
+
+        f1.SeasonFights++;
+        f2.SeasonFights++;
+
+        if (KOFinish)
+        {
+            f1.KOWins++;
+            f2.KOLosses++;
+        }
+    }
+    else
+    {
+        f2.Wins++;
+        f1.Losses++;
+
+        f2.SeasonWins++;
+        f1.SeasonLosses++;
+
+        f2.SeasonFights++;
+        f1.SeasonFights++;
+
+        if (KOFinish)
+        {
+            f2.KOWins++;
+            f1.KOLosses++;
+        }
+    }
+
+    bool Upset = false;
+    if (winner == &f1)
+    {
+        if (BaseRating1 + 40 < BaseRating2)
+        {
+            Upset = true;
+        }
+    }
+    else
+    {
+        if (BaseRating2 + 40 < BaseRating1)
+        {
+            Upset = true;
+        }
+    }
+
+    std::cout << "\n===== FINAL RESULT =====\n\n";
+    std::cout << "Winner: " << winner->Name << "\n\n";
+
+    std::cout << winner->Name
+              << " is now on a "
+              << winner->WinStreak
+              << "-fight win streak!\n";
+
+    PauseGame();
+
+    if (winner == &f1)
+    {
+        showHeadline(f1, f2, KOFinish);
+    }
+    else
+    {
+        showHeadline(f2, f1, KOFinish);
+    }
+
+    std::cout << "\n\n";
+
+    std::cout << "===== POST FIGHT DEVELOPMENT =====\n\n";
+
+    if (winner == &f1)
+    {
+        ImproveStats(f1, f2);
+        UpdatePopularity(f1, f2, KOFinish, Upset);
+    }
+    else
+    {
+        ImproveStats(f2, f1);
+        UpdatePopularity(f2, f1, KOFinish, Upset);
+    }
+
+    RecordMatches(fighter1, fighter2);
+
+    std::cout << "\nGrand Prix Matches Played: "
+              << GrandPrixMatches.size()
+              << "/18\n";
+
+    PauseGame();
+
+        if (chosenfighter == &f1 && winner == &f1)
+    {
+        int payout = static_cast<int>(betamount * odds.Odds1);
+
+        Money += payout;
+
+        std::cout << "\nBET WON!\n";
+        std::cout << "Earned $" << payout << '\n';
+    }
+    else if (chosenfighter == &f2 && winner == &f2)
+    {
+        int payout = static_cast<int>(betamount * odds.Odds2);
+
+        Money += payout;
+
+        std::cout << "\nBET WON!\n";
+        std::cout << "Earned $" << payout << '\n';
+    }
+    else
+    {
+        std::cout << "\nBET LOST!\n";
+        std::cout << "Lost $" << betamount << '\n';
+    }
+
+    std::cout << "\nCurrent Balance: $"
+              << Money
+              << "\n\n";
+
+    std::cout << "====================\n";
+
+    AdvanceTime();
+
+    return winner == &f1 ? fighter1 : fighter2;
 }
 
 std::vector <int> GetTopFour()
