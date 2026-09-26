@@ -255,40 +255,142 @@ int RunSemiFinal(int fighter1, int fighter2)
     Money -= betamount;
 
 
-    int performance1 = f1.Strength + f1.Stamina + f1.Toughness;
-    int performance2 = f2.Strength + f2.Stamina + f2.Toughness;
-    int performanceDiff = performance1 - performance2;
-    int baseDiff = f1.Strength - f2.Strength;
-
-    double koChance = CalculateKOChance(performanceDiff,baseDiff);
-
-    bool fightOver = false;
-    bool KOFinish = false;
+    int KOFinish = false;
     Fighter* winner = nullptr;
 
-    for(int round=1; round<=3; round++)
+int RoundsWon1 = 0;
+int RoundsWon2 = 0;
+
+for (int round = 1; round <= 3; round++)
+{
+    std::cout << "\n===== ROUND "
+              << round
+              << " =====\n\n";
+
+    commentary();
+    commentary();
+    std::cout << "\n";
+
+    int form1 = rand() % 61 - 30;
+    int form2 = rand() % 61 - 30;
+
+    int performance1 = BaseRating1 + form1;
+    int performance2 = BaseRating2 + form2;
+
+    int diff = abs(performance1 - performance2);
+    int baseDiff = abs(BaseRating1 - BaseRating2);
+
+    double koChance = CalculateKOChance(diff, baseDiff);
+    int ko = rand() % 100 + 1;
+
+    if (performance1 > performance2)
     {
-        std::cout << "\n========== ROUND " << round << " ==========\n";
-
-        int roll = rand() % 100;
-
-        if(roll < koChance)
+        if (ko <= koChance)
         {
-            winner = (rand() % 2 == 0) ? &f1 : &f2;
-            fightOver = true;
-            KOFinish = true;
             std::cout << "\nKNOCKOUT!\n";
-            std::cout << winner->Name << " wins by KO!\n";
+            KOCommentary(f1, f2);
+
+            winner = &f1;
+            KOFinish = true;
+
+            break;
         }
-        break;
+
+        RoundsWon1++;
+
+        CloseCommentary(f1, f2, diff);
+
+        std::cout << "\n";
+        std::cout
+            << f1.Name
+            << " wins Round "
+            << round
+            << "\n\n";
     }
-    std::cout << "Both fighters survive Round " << round << ".\n";
-    if(!fightOver)
+    else if (performance1 < performance2)
     {
-        winner = (rand() % 2 == 0) ? &f1 : &f2;
-        std::cout << "\nFIGHT GOES TO DECISION!\n";
-        std::cout << winner->Name << " wins by decision!\n";
+        if (ko <= koChance)
+        {
+            std::cout << "\nKNOCKOUT!\n";
+            KOCommentary(f2, f1);
+
+            winner = &f2;
+            KOFinish = true;
+
+            break;
+        }
+
+        RoundsWon2++;
+
+        CloseCommentary(f2, f1, diff);
+
+        std::cout << "\n";
+        std::cout
+            << f2.Name
+            << " wins Round "
+            << round
+            << "\n\n";
     }
+    else
+    {
+        if (rand() % 2 == 0)
+        {
+            RoundsWon1++;
+
+            std::cout
+                << "Close round! Judges favor "
+                << f1.Name
+                << "\n";
+        }
+        else
+        {
+            RoundsWon2++;
+
+            std::cout
+                << "Close round! Judges favor "
+                << f2.Name
+                << "\n";
+        }
+    }
+
+    std::cout
+        << "\nSCOREBOARD:\n";
+
+    std::cout
+        << f1.Name
+        << ": "
+        << RoundsWon1
+        << "\n";
+
+    std::cout
+        << f2.Name
+        << ": "
+        << RoundsWon2
+        << "\n";
+
+    if (round < 3)
+    {
+        std::cout
+            << "\n-------------------------\n";
+
+        std::cout
+            << "Press Enter for next round...";
+
+        std::cin.get();
+    }
+}
+
+  if (winner==nullptr)
+  {
+    if (RoundsWon1 > RoundsWon2)
+    {
+        winner = &f1;
+    }
+    else
+    {
+        winner = &f2;
+    }
+  }
 
     Fighter* loser = (winner == &f1) ? &f2 : &f1;
 

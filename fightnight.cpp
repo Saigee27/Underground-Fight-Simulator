@@ -44,6 +44,8 @@ void FightNight()
     {
         ViewStandings();
         std::vector<int> topfour = GetTopFour();
+        int semifinal1Winner = RunSemiFinal(topfour[0],topfour[3]);
+        int semifinal2Winner = RunSemiFinal(topfour[1],topfour[2]);
         return;
     }
 
