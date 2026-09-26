@@ -185,7 +185,7 @@ int RunSemiFinal(int fighter1, int fighter2)
 
     DisplayOdds(f1,f2,odds);
 
-    const int MIN_BET = 1000;
+    const int MIN_BET = 500;
     int betchoice = 0;
     while (true)
     {
@@ -255,7 +255,7 @@ int RunSemiFinal(int fighter1, int fighter2)
     Money -= betamount;
 
 
-    int KOFinish = false;
+    bool KOFinish = false;
     Fighter* winner = nullptr;
 
 int RoundsWon1 = 0;

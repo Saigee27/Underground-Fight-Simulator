@@ -82,7 +82,7 @@ if (!GetNextGrandPrixMatch(fighter1, fighter2))
     bool KOFinish=false;
 
 
-    const int MIN_BET = 1000;
+    const int MIN_BET = 500;
 
 
     int betchoice=0;
@@ -121,8 +121,8 @@ std::cout<<"Available Balance: $"<<Money<<"\n";
 std::cout<<"====================\n\n";
 while(true)
 {
-    std::cout << "Bet Amount: $";
-
+    std::cout << "\nBalance: $" << Money << "\n";
+    std::cout << "Enter bet amount (Minimum $" << MIN_BET << "): $";
     std::cin >> betamount;
 
     if (std::cin.fail())
@@ -141,7 +141,7 @@ while(true)
 
     if (betamount < MIN_BET)
     {
-        std::cout << "\nMinimum bet is $1000!\n\n";
+        std::cout << "Minimum bet is $" << MIN_BET << ".\n";
         continue;
     }
 

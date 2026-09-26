@@ -103,7 +103,7 @@ std::cout << f2.Name
     bool KOFinish=false;
 
 
-    const int MIN_BET = 1000;
+    const int MIN_BET = 500;
 
 
     int betchoice=0;
@@ -159,7 +159,7 @@ while(true)
 
     if (betamount < MIN_BET)
     {
-        std::cout << "\nMinimum bet is $1000!\n\n";
+        std::cout << "Minimum bet is $" << MIN_BET << ".\n";
         continue;
     }
 
