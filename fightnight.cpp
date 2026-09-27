@@ -8,6 +8,7 @@
 #include "Bookmaker.h"
 #include "fight-history.h"
 #include "knockoutsystem.h"
+#include "menu.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -44,8 +45,10 @@ void FightNight()
     {
         ViewStandings();
         std::vector<int> topfour = GetTopFour();
-        int semifinal1Winner = RunSemiFinal(topfour[0],topfour[3]);
-        int semifinal2Winner = RunSemiFinal(topfour[1],topfour[2]);
+        int semifinal1Winner = RunSemiFinal(topfour[0],topfour[3],1);
+        PauseGame();
+        SFBreakMenu();
+        int semifinal2Winner = RunSemiFinal(topfour[1],topfour[2],2);
         return;
     }
 

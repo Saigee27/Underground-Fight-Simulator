@@ -111,3 +111,46 @@ void menu()
     };
     
 }
+
+
+void SFBreakMenu()
+{
+    int choice;
+
+    while (true)
+    {
+        std::cout << "\n====================\n";
+        std::cout << " GRAND PRIX BREAK\n";
+        std::cout << "====================\n\n";
+
+        std::cout << "1. View Roster\n";
+        std::cout << "2. View Grand Prix Standings\n";
+        std::cout << "3. View Fight History\n";
+        std::cout << "4. Continue to Semifinal 2\n";
+
+        std::cout << "\nChoice: ";
+        std::cin >> choice;
+
+        switch (choice)
+        {
+            case 1:
+                ViewRoster();
+                break;
+
+            case 2:
+                ViewStandings();
+                break;
+
+            case 3:
+                showFightHistory();
+                break;
+
+            case 4:
+                return;
+
+            default:
+                std::cout << "Invalid Request\n";
+                break;
+        }
+    }
+}

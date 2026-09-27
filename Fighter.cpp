@@ -57,7 +57,7 @@ void ViewRoster()
 void ImproveStats(Fighter& winner, Fighter& loser)
 {
     int winnerstats = rand() % 3;
-    int winnergained = rand() % 3 + 1;
+    int winnergained = rand() % 2 + 1;
 
     int loserstats = rand() % 3;
     int losergained = rand() % 3 - 1;

@@ -161,7 +161,7 @@ bool CompleteSeason()
     return true;
 }
 
-int RunSemiFinal(int fighter1, int fighter2)
+int RunSemiFinal(int fighter1, int fighter2, int semifinalNumber)
 {
     Fighter& f1 = roster[fighter1];
     Fighter& f2 = roster[fighter2];
@@ -481,9 +481,9 @@ for (int round = 1; round <= 3; round++)
 
     RecordMatches(fighter1, fighter2);
 
-    std::cout << "\nGrand Prix Matches Played: "
-              << GrandPrixMatches.size()
-              << "/18\n";
+    std::cout << "\n===== GRAND PRIX SEMIFINAL "
+          << semifinalNumber
+          << " =====\n";
 
     PauseGame();
 

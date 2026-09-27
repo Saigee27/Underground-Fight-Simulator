@@ -8,5 +8,5 @@ void RecordMatches(int fighter1, int fighter2);
 bool GetNextGrandPrixMatch(int& fighter1, int& fighter2);
 void GenerateGrandPrixSchedule();
 std::vector <int> GetTopFour();
-int RunSemiFinal(int fighter1, int fighter2);
+int RunSemiFinal(int fighter1, int fighter2, int semifinalNumber);
 #endif
