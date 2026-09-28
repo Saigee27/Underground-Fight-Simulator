@@ -49,6 +49,8 @@ void FightNight()
         PauseGame();
         SFBreakMenu();
         int semifinal2Winner = RunSemiFinal(topfour[1],topfour[2],2);
+        SFBreakMenu();
+        int finalWinner = RunFinal(semifinal1Winner, semifinal2Winner);
         return;
     }
 
