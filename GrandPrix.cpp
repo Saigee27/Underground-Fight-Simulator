@@ -18,6 +18,9 @@ std::vector<std::pair<int,int>> GrandPrixMatches;
 std::vector<std::pair<int,int>> GrandPrixSchedule;
 int GrandPrixFightIndex = 0;
 
+int GrandPrixChampion = -1;
+bool GPFinished = false;
+
 
 void ViewStandings()
 {
@@ -400,7 +403,6 @@ for (int round = 1; round <= 3; round++)
     loser->WinStreak=0;
     loser->LoseStreak++;
 
-    RecordMatches(fighter1,fighter2);
 
     if (winner == &f1)
     {
@@ -761,7 +763,7 @@ int RunFinal(int fighter1, int fighter2)
     loser->WinStreak=0;
     loser->LoseStreak++;
 
-    RecordMatches(fighter1,fighter2);
+    
 
     if (winner == &f1)
     {

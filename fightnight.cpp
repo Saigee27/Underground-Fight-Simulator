@@ -9,6 +9,7 @@
 #include "fight-history.h"
 #include "knockoutsystem.h"
 #include "menu.h"
+#include "Ranking.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -51,6 +52,10 @@ void FightNight()
         int semifinal2Winner = RunSemiFinal(topfour[1],topfour[2],2);
         BreakMenu();
         int finalWinner = RunFinal(semifinal1Winner, semifinal2Winner);
+        GrandPrixChampion = finalWinner;
+        GPFinished = true;
+        UpdateRankings();
+        ChampionCommentary(roster[GrandPrixChampion]);
         return;
     }
 

@@ -10,4 +10,6 @@ void GenerateGrandPrixSchedule();
 std::vector <int> GetTopFour();
 int RunSemiFinal(int fighter1, int fighter2, int semifinalNumber);
 int RunFinal(int fighter1, int fighter2);
+extern int GrandPrixChampion;
+extern bool GPFinished;
 #endif
