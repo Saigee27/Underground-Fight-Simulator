@@ -113,7 +113,7 @@ void menu()
 }
 
 
-void SFBreakMenu()
+void BreakMenu()
 {
     int choice;
 
@@ -126,7 +126,7 @@ void SFBreakMenu()
         std::cout << "1. View Roster\n";
         std::cout << "2. View Grand Prix Standings\n";
         std::cout << "3. View Fight History\n";
-        std::cout << "4. Continue to Semifinal 2\n";
+        std::cout << "4. Continue\n";
 
         std::cout << "\nChoice: ";
         std::cin >> choice;

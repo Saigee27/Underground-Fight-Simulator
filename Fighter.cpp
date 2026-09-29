@@ -57,40 +57,69 @@ void ViewRoster()
 void ImproveStats(Fighter& winner, Fighter& loser)
 {
     int winnerstats = rand() % 3;
-    int winnergained = rand() % 2 + 1;
+    int winnergained = rand() % 3 - 1;
 
     int loserstats = rand() % 3;
     int losergained = rand() % 3 - 1;
 
-
     if (winnerstats == 0)
+{
+    winner.Strength += winnergained;
+    if (winner.Strength > 100)
     {
-        winner.Strength += winnergained;
-        if (winner.Strength > 100)
-        {
-            winner.Strength = 100;
-        }
-            std::cout << winner.Name << " improved Strength by +" << winnergained << "!\n";
+        winner.Strength = 100;
     }
-    else if (winnerstats == 1)
+    if (winner.Strength < 50)
     {
-        winner.Stamina += winnergained;
-        if (winner.Stamina > 100)
-        {
-            winner.Stamina = 100;
-        }
-        std::cout<<winner.Name<<" improved Stamina by +"<<winnergained<<"!\n";
-    }
-    else
-    {
-        winner.Toughness += winnergained;
-        if(winner.Toughness > 100)
-        {
-            winner.Toughness = 100;
-        }
-        std::cout << winner.Name <<" improved Toughness by +"<<winnergained<<"!\n";
+        winner.Strength = 50;
     }
 
+    if (winnergained > 0)
+        std::cout << winner.Name << " improved Strength by +" << winnergained << "!\n";
+    else if (winnergained < 0)
+        std::cout << winner.Name << " lost " << -winnergained << " Strength after the fight!\n";
+    else
+        std::cout << winner.Name << "'s Strength remained unchanged.\n";
+}
+else if (winnerstats == 1)
+{
+    winner.Stamina += winnergained;
+    if (winner.Stamina > 100)
+    {
+        winner.Stamina = 100;
+    }
+    if (winner.Stamina < 50)
+    {
+        winner.Stamina = 50;
+    }
+
+    if (winnergained > 0)
+        std::cout << winner.Name << " improved Stamina by +" << winnergained << "!\n";
+    else if (winnergained < 0)
+        std::cout << winner.Name << " lost " << -winnergained << " Stamina after the fight!\n";
+    else
+        std::cout << winner.Name << "'s Stamina remained unchanged.\n";
+}
+else
+{
+    winner.Toughness += winnergained;
+    if (winner.Toughness > 100)
+    {
+        winner.Toughness = 100;
+    }
+    if (winner.Toughness < 50)
+    {
+        winner.Toughness = 50;
+    }
+
+    if (winnergained > 0)
+        std::cout << winner.Name << " improved Toughness by +" << winnergained << "!\n";
+    else if (winnergained < 0)
+        std::cout << winner.Name << " lost " << -winnergained << " Toughness after the fight!\n";
+    else
+        std::cout << winner.Name << "'s Toughness remained unchanged.\n";
+}
+    
     if (losergained != 0)
     {
         if (loserstats == 0)

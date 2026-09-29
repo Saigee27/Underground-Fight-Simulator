@@ -394,6 +394,14 @@ for (int round = 1; round <= 3; round++)
 
     Fighter* loser = (winner == &f1) ? &f2 : &f1;
 
+    winner->WinStreak++;
+    winner->LoseStreak=0;
+
+    loser->WinStreak=0;
+    loser->LoseStreak++;
+
+    RecordMatches(fighter1,fighter2);
+
     if (winner == &f1)
     {
         f1.Wins++;
@@ -746,6 +754,14 @@ int RunFinal(int fighter1, int fighter2)
     }
 
     Fighter* loser = (winner == &f1) ? &f2 : &f1;
+
+    winner->WinStreak++;
+    winner->LoseStreak=0;
+
+    loser->WinStreak=0;
+    loser->LoseStreak++;
+
+    RecordMatches(fighter1,fighter2);
 
     if (winner == &f1)
     {
