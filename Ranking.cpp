@@ -5,12 +5,24 @@
 #include <algorithm>
 std::vector <Fighter*> Rankings;
 
+
+double CalculateRankedScore(const Fighter& fighter)
+{
+    return fighter.RankedScore;
+}
+
+
 void UpdateRankings()
 {
     Rankings.clear();
     for (Fighter &fighter : roster)
     {
         Rankings.push_back(&fighter);
+    }
+
+    for(Fighter* fighter : Rankings)
+    {
+        fighter->RankedScore = CalculateRankedScore(*fighter);
     }
 
     std::sort(Rankings.begin(), Rankings.end(), [](Fighter* a, Fighter* b)
