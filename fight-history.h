@@ -10,7 +10,11 @@ enum class Event
 enum class Method
 {
     KO,
-    Decision
+    TKO,
+    Submission,
+    Decision,
+    Draw,
+    DQ
 };
 struct FightResult
 {
@@ -21,6 +25,9 @@ struct FightResult
     Event event;
     Method method;
     int Round;
+    int Duration;
+    std::string DecisionType;
+    std::string Date;
 };
 extern std::vector <FightResult> fightHistory;
 void RecordFights(const FightResult& result);

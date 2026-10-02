@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <string>
 void RankedFightNight()
 {
     
@@ -102,6 +103,8 @@ std::cout << f2.Name
     Fighter* winner = nullptr;
     bool KOFinish=false;
 
+    int FightDuration = 0;
+    int FinalRound = 0;
 
     const int MIN_BET = 500;
 
@@ -196,6 +199,7 @@ else
 
     for (int round=1; round<=3; round++)
     {
+        FinalRound = round;
         std::cout << "\n===== ROUND "
               << round
               << " =====\n\n";
@@ -415,14 +419,20 @@ result.Fighter1 = &f1;
 result.Fighter2 = &f2;
 result.Winner = winner;
 result.Loser = loser;
-result.Round = 0;
+result.Round = FinalRound;
+result.Duration = FinalRound * 300;
+result.Date = "Week " + std::to_string(week)
+           + " | " + Months[monthindex]
+           + " | " + std::to_string(year);
 if(KOFinish)
 {
     result.method = Method::KO;
+    result.DecisionType = "";
 }
 else
 {
     result.method = Method::Decision;
+    result.DecisionType = "Unanimous";
 }
 RecordFights(result);
 
@@ -463,13 +473,13 @@ else if (winner->WinStreak >= 7)
 
 if (loser->LoseStreak == 3)
 {
-    std::cout << "⚠ "
+    std::cout
               << loser->Name
               << " has now lost three fights in a row!\n";
 }
 else if (loser->LoseStreak >= 5)
 {
-    std::cout << "🚨 "
+    std::cout
               << loser->Name
               << "'s career is in serious trouble after "
               << loser->LoseStreak
