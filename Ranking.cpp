@@ -12,6 +12,15 @@ double CalculateRankedScore(const Fighter& fighter)
 }
 
 
+double CalculateOpponentStrength(const Fighter& opponent)
+{
+    if (opponent.Ranking <= 0)
+    {return 0;}
+
+    return 100.0 / opponent.Ranking;
+}
+
+
 void UpdateRankings()
 {
     Rankings.clear();

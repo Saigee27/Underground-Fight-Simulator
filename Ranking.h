@@ -16,4 +16,5 @@ Match SelectMatch();
 int SelectRankedFighter();
 int SelectOpponent(int FighterIndex);
 double CalculateRankedScore(const Fighter& fighter);
+double CalculateOpponentStrength(const Fighter& opponent);
 #endif

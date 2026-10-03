@@ -419,6 +419,7 @@ result.Fighter1 = &f1;
 result.Fighter2 = &f2;
 result.Winner = winner;
 result.Loser = loser;
+result.OpponentStrength = CalculateOpponentStrength(*loser);
 result.Round = FinalRound;
 result.Duration = FinalRound * 300;
 result.Date = "Week " + std::to_string(week)
