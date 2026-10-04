@@ -26,10 +26,15 @@ struct FightResult
     Method method;
     int Round;
     int Duration;
+
+    double OpponentStrength;
+    double WinQuality;
+
     std::string DecisionType;
     std::string Date;
 };
 extern std::vector <FightResult> fightHistory;
 void RecordFights(const FightResult& result);
 void showFightHistory();
+double CalculateWinQuality(const FightResult& result);
 #endif

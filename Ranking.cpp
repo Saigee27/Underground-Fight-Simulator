@@ -1,5 +1,6 @@
 #include "Ranking.h"
 #include "Fighter.h"
+#include "fight-history.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -19,6 +20,29 @@ double CalculateOpponentStrength(const Fighter& opponent)
 
     return 100.0 / opponent.Ranking;
 }
+
+
+double CalculateWinQuality(const FightResult& result)
+{
+    double quality = 0;
+    quality += result.OpponentStrength * 0.5;
+
+    if(result.method == Method::KO || result.method == Method::TKO || result.method == Method::Submission)
+    {
+        quality += 30;
+    }
+    else if(result.method == Method::Decision)
+    {
+        quality += 15;
+    }
+    
+    if (result.method == Method::KO || result.method == Method::TKO || result.method == Method::Submission)
+    {
+        quality += (4 - result.Round) * 5;
+    }
+    return quality;
+}
+
 
 
 void UpdateRankings()

@@ -422,6 +422,7 @@ result.Loser = loser;
 result.OpponentStrength = CalculateOpponentStrength(*loser);
 result.Round = FinalRound;
 result.Duration = FinalRound * 300;
+result.WinQuality = CalculateWinQuality(result);
 result.Date = "Week " + std::to_string(week)
            + " | " + Months[monthindex]
            + " | " + std::to_string(year);
