@@ -44,6 +44,12 @@ double CalculateWinQuality(const FightResult& result)
 }
 
 
+double CalculateUpsetValue(double winnerProbability)
+{
+    return (1.0 - winnerProbability) * 100.0;
+}
+
+
 
 void UpdateRankings()
 {

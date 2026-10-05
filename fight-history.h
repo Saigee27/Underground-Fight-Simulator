@@ -30,6 +30,9 @@ struct FightResult
     double OpponentStrength;
     double WinQuality;
 
+    double WinnerProbability;
+    double UpsetValue;
+
     std::string DecisionType;
     std::string Date;
 };
@@ -37,4 +40,5 @@ extern std::vector <FightResult> fightHistory;
 void RecordFights(const FightResult& result);
 void showFightHistory();
 double CalculateWinQuality(const FightResult& result);
+double CalculateUpsetValue(double winnerProbability);
 #endif

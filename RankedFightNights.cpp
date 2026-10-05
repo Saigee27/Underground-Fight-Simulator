@@ -422,7 +422,7 @@ result.Loser = loser;
 result.OpponentStrength = CalculateOpponentStrength(*loser);
 result.Round = FinalRound;
 result.Duration = FinalRound * 300;
-result.WinQuality = CalculateWinQuality(result);
+
 result.Date = "Week " + std::to_string(week)
            + " | " + Months[monthindex]
            + " | " + std::to_string(year);
@@ -436,6 +436,25 @@ else
     result.method = Method::Decision;
     result.DecisionType = "Unanimous";
 }
+
+
+if(winner == &f1)
+{
+    result.WinnerProbability = odds.Probability1;
+}
+else
+{
+    result.WinnerProbability = odds.Probability2;
+}
+
+result.UpsetValue =
+    CalculateUpsetValue(result.WinnerProbability);
+
+
+// Day 4: Win Quality
+result.WinQuality = CalculateWinQuality(result);
+
+
 RecordFights(result);
 
 
