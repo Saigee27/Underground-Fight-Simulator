@@ -41,4 +41,7 @@ void RecordFights(const FightResult& result);
 void showFightHistory();
 double CalculateWinQuality(const FightResult& result);
 double CalculateUpsetValue(double winnerProbability);
+double CalculateRecentForm(const Fighter& fighter);
+double CalculateTrajectoryScore(const Fighter& fighter);
+std::string GetTrajectoryState(const Fighter& fighter);
 #endif
