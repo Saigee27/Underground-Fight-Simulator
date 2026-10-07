@@ -35,6 +35,7 @@ struct FightResult
 
     std::string DecisionType;
     std::string Date;
+    int TimeStamp;
 };
 extern std::vector <FightResult> fightHistory;
 void RecordFights(const FightResult& result);
@@ -44,4 +45,6 @@ double CalculateUpsetValue(double winnerProbability);
 double CalculateRecentForm(const Fighter& fighter);
 double CalculateTrajectoryScore(const Fighter& fighter);
 std::string GetTrajectoryState(const Fighter& fighter);
+int CalculateFightAge(const FightResult& fight);
+double CalculateRecencyWeight(const FightResult& fight);
 #endif

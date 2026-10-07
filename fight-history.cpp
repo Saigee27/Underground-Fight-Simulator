@@ -1,5 +1,7 @@
 #include "fight-history.h"
+#include "Timeline.h"
 #include <iostream>
+#include <cmath>
 std::vector <FightResult> fightHistory;
 void RecordFights(const FightResult& result)
 {
@@ -116,4 +118,19 @@ std::string GetTrajectoryState(const Fighter& fighter)
     {
         return "Rising";
     }
+}
+
+int CalculateFightAge(const FightResult& fight)
+{
+    int currentTimeStamp =
+        (year * 48) + (monthindex * 4) + (week - 1);
+
+    return currentTimeStamp - fight.TimeStamp;
+}
+
+double CalculateRecencyWeight(const FightResult& fight)
+{
+    int fightAge = CalculateFightAge(fight);
+
+    return std::pow(0.95, fightAge);
 }
