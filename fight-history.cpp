@@ -134,3 +134,55 @@ double CalculateRecencyWeight(const FightResult& fight)
 
     return std::pow(0.95, fightAge);
 }
+
+int CalculateInactivity(const Fighter& fighter)
+{
+    int latestTimeStamp = -1;
+
+    for (const FightResult& fight : fightHistory)
+    {
+        if (fight.event != Event::Ranked)
+        {
+            continue;
+        }
+        if (fight.Fighter1 != &fighter && fight.Fighter2 != &fighter)
+        {
+            continue;
+        }
+        if (fight.TimeStamp > latestTimeStamp)
+        {
+            latestTimeStamp = fight.TimeStamp;
+        }
+    }
+
+    if(latestTimeStamp==-1)
+    {
+        return 0;
+    }
+    int currentTimeStamp = (year * 48) + (monthindex * 4) + (week - 1);
+    return currentTimeStamp - latestTimeStamp;
+}
+
+double CalculateInactivityFactor(const Fighter& fighter)
+{
+    int inactivityWeeks = CalculateInactivity(fighter);
+    return std::pow(0.98,inactivityWeeks);
+}
+
+std::string GetActivityStatus(const Fighter& fighter)
+{
+    int inactivityWeeks = CalculateInactivity(fighter);
+
+    if (inactivityWeeks <= 4)
+    {
+        return "Active";
+    }
+    else if (inactivityWeeks <= 12)
+    {
+        return "Inactive";
+    }
+    else
+    {
+        return "Very Inactive";
+    }
+}

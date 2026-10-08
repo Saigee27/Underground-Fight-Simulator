@@ -47,4 +47,7 @@ double CalculateTrajectoryScore(const Fighter& fighter);
 std::string GetTrajectoryState(const Fighter& fighter);
 int CalculateFightAge(const FightResult& fight);
 double CalculateRecencyWeight(const FightResult& fight);
+int CalculateInactivity(const Fighter& fighter);
+double CalculateInactivityFactor(const Fighter& fighter);
+std::string GetActivityStatus(const Fighter& fighter);
 #endif
