@@ -7,10 +7,7 @@
 std::vector <Fighter*> Rankings;
 
 
-double CalculateRankedScore(const Fighter& fighter)
-{
-    return fighter.RankedScore;
-}
+
 
 
 double CalculateOpponentStrength(const Fighter& opponent)
@@ -159,4 +156,56 @@ double CalculateFighterStrength(const Fighter& man)
         return 0;
     }
     return 100.0 * (totalFighters - man.Ranking) / (totalFighters - 1);
+}
+
+double CalculateRankedScore(const Fighter& fighter)
+{
+    double totalScore = 0.0;
+
+    for(const FightResult& fight : fightHistory)
+    {
+          if (fight.event != Event::Ranked)
+        {
+            continue;
+        }
+
+        if (fight.Fighter1 != &fighter &&
+            fight.Fighter2 != &fighter)
+        {
+            continue;
+        }
+
+        double resultWeight;
+
+        if (fight.Winner == &fighter)
+        {
+            resultWeight = 1.0;
+        }
+        else if (fight.Loser == &fighter)
+        {
+            resultWeight = -1.0;
+        }
+        else
+        {
+            continue;
+        }
+
+        double performanceWeight =
+            fight.WinQuality + fight.UpsetValue;
+
+        double contribution =
+            resultWeight *
+            fight.OpponentStrength *
+            performanceWeight / 100.0;
+
+        contribution *= CalculateRecencyWeight(fight);
+
+        totalScore += contribution;
+    }
+
+    totalScore *= CalculateTrajectoryScore(fighter) / 100.0;
+    totalScore *= CalculateInactivityFactor(fighter);
+
+    return totalScore;
+    
 }
