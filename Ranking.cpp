@@ -162,9 +162,9 @@ double CalculateRankedScore(const Fighter& fighter)
 {
     double totalScore = 0.0;
 
-    for(const FightResult& fight : fightHistory)
+    for (const FightResult& fight : fightHistory)
     {
-          if (fight.event != Event::Ranked)
+        if (fight.event != Event::Ranked)
         {
             continue;
         }
@@ -176,22 +176,23 @@ double CalculateRankedScore(const Fighter& fighter)
         }
 
         double resultWeight;
+        double performanceWeight;
 
         if (fight.Winner == &fighter)
         {
             resultWeight = 1.0;
+            performanceWeight =
+                fight.WinQuality + fight.UpsetValue;
         }
         else if (fight.Loser == &fighter)
         {
             resultWeight = -1.0;
+            performanceWeight = fight.WinQuality;
         }
         else
         {
             continue;
         }
-
-        double performanceWeight =
-            fight.WinQuality + fight.UpsetValue;
 
         double contribution =
             resultWeight *
@@ -207,5 +208,6 @@ double CalculateRankedScore(const Fighter& fighter)
     totalScore *= CalculateInactivityFactor(fighter);
 
     return totalScore;
-    
 }
+
+    
