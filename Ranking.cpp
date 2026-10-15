@@ -187,7 +187,7 @@ double CalculateRankedScore(const Fighter& fighter)
         else if (fight.Loser == &fighter)
         {
             resultWeight = -1.0;
-            performanceWeight = fight.WinQuality;
+            performanceWeight = 20.0;
         }
         else
         {
@@ -204,7 +204,7 @@ double CalculateRankedScore(const Fighter& fighter)
         totalScore += contribution;
     }
 
-    totalScore *= CalculateTrajectoryScore(fighter) / 100.0;
+    
     totalScore *= CalculateInactivityFactor(fighter);
 
     return totalScore;
