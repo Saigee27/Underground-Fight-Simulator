@@ -63,20 +63,8 @@ void UpdateRankings()
 
     std::sort(Rankings.begin(), Rankings.end(), [](Fighter* a, Fighter* b)
     {
-        if (a->SeasonWins != b->SeasonWins)
-        {
-            return a->SeasonWins > b->SeasonWins;
-        }
-        if (a->SeasonLosses != b->SeasonLosses)
-        {
-            return a->SeasonLosses < b->SeasonLosses;
-        }
-        if (a->Popularity != b->Popularity)
-        {
-            return a->Popularity > b->Popularity;
-        }
-
-        return a->KOWins > b->KOWins;
+       
+        return a->RankedScore > b->RankedScore;
 
     });
 
