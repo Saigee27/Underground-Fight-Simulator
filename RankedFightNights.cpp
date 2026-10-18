@@ -39,18 +39,18 @@ void RankedFightNight()
     Fighter & f1 = roster[fighter1];
     Fighter & f2 = roster[fighter2];
     
-    double OpponentStrength1 = CalculateFighterStrength(f2);
-    double OpponentStrength2 = CalculateFighterStrength(f1);
+    double Fighter1OpponentStrength = CalculateOpponentStrength(f2);
+    double Fighter2OpponentStrength = CalculateOpponentStrength(f1);
 
 std::cout << "\n===== OPPONENT STRENGTH TEST =====\n";
 
 std::cout << f1.Name
           << " opponent strength: "
-          << OpponentStrength1 << "\n";
+          << Fighter1OpponentStrength << "\n";
 
 std::cout << f2.Name
           << " opponent strength: "
-          << OpponentStrength2 << "\n";
+          << Fighter2OpponentStrength << "\n";
 
     std::cout<<"\n====================\n\n";
     ShowDate();
@@ -399,10 +399,10 @@ else
 double WinnerOpponentStrength;
 if(winner == &f1)
 {
-    WinnerOpponentStrength = OpponentStrength1;
+    WinnerOpponentStrength = Fighter1OpponentStrength;
 }
 else{
-    WinnerOpponentStrength = OpponentStrength2;
+    WinnerOpponentStrength = Fighter2OpponentStrength;
 }
 
 double RankingGain = 10.0 + (WinnerOpponentStrength / 10.0);
@@ -420,7 +420,8 @@ result.Fighter2 = &f2;
 result.Winner = winner;
 result.Loser = loser;
 result.TimeStamp = (year * 48) + (monthindex * 4) + (week - 1);
-result.OpponentStrength = CalculateOpponentStrength(*loser);
+result.Fighter1OpponentStrength = Fighter1OpponentStrength;
+result.Fighter2OpponentStrength = Fighter2OpponentStrength;
 result.Round = FinalRound;
 result.Duration = FinalRound * 300;
 

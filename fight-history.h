@@ -27,6 +27,8 @@ struct FightResult
     int Round;
     int Duration;
 
+    double Fighter1OpponentStrength;
+    double Fighter2OpponentStrength;
     double OpponentStrength;
     double WinQuality;
 

@@ -182,9 +182,20 @@ double CalculateRankedScore(const Fighter& fighter)
             continue;
         }
 
+        double OpponentStrength;
+
+        if(fight.Fighter1 == &fighter)
+        {
+            OpponentStrength = fight.Fighter1OpponentStrength;
+        }
+        else
+        {
+            OpponentStrength = fight.Fighter2OpponentStrength;
+        }
+
         double contribution =
             resultWeight *
-            fight.OpponentStrength *
+            OpponentStrength *
             performanceWeight / 100.0;
 
         contribution *= CalculateRecencyWeight(fight);
