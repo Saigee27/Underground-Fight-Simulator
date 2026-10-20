@@ -22,7 +22,21 @@ double CalculateOpponentStrength(const Fighter& opponent)
 double CalculateWinQuality(const FightResult& result)
 {
     double quality = 0;
-    quality += result.OpponentStrength * 0.5;
+    double opponentStrength = 0;
+    if(result.Winner == result.Fighter1)
+    {
+        opponentStrength = result.Fighter1OpponentStrength;
+    }
+    else if(result.Winner == result.Fighter2)
+    {
+        opponentStrength = result.Fighter2OpponentStrength;
+    }
+    else
+    {
+        return 0.0;
+    }
+
+    quality += opponentStrength * 0.5; 
 
     if(result.method == Method::KO || result.method == Method::TKO || result.method == Method::Submission)
     {
@@ -64,7 +78,22 @@ void UpdateRankings()
     std::sort(Rankings.begin(), Rankings.end(), [](Fighter* a, Fighter* b)
     {
        
-        return a->RankedScore > b->RankedScore;
+        if (a->RankedScore != b->RankedScore)
+        {
+            return a->RankedScore > b->RankedScore;
+        }
+
+        if (a->SeasonWins != b->SeasonWins)
+        {
+            return a->SeasonWins > b->SeasonWins;
+        }
+
+        if (a->SeasonLosses != b->SeasonLosses)
+        {
+            return a->SeasonLosses < b->SeasonLosses;
+        }
+
+        return a->KOWins > b->KOWins;
 
     });
 
@@ -76,6 +105,12 @@ void UpdateRankings()
 
 void ViewRankings()
 {
+    if (Rankings.empty())
+{
+    std::cout << "\nNo rankings available yet.\n";
+    return;
+}
+
     std::cout << "\n=====================================\n";
     std::cout << "     OFFICIAL THE PIT RANKINGS\n";
     std::cout << "=====================================\n\n";
@@ -100,6 +135,11 @@ void ViewRankings()
         << fighter->Wins
         << "-"
         << fighter->Losses
+        << "\n";
+
+        std::cout
+        << "Ranked Score : "
+        << fighter->RankedScore
         << "\n";
 
         std::cout
