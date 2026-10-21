@@ -459,6 +459,7 @@ result.WinQuality = CalculateWinQuality(result);
 
 RecordFights(result);
 
+UpdateRankings();
 
 std::cout
 << "\n===== FINAL RESULT =====\n\n";
