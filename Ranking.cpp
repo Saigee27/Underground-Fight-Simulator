@@ -67,6 +67,7 @@ void UpdateRankings()
     Rankings.clear();
     for (Fighter &fighter : roster)
     {
+        fighter.PreviousRanking = fighter.Ranking;
         Rankings.push_back(&fighter);
     }
 
@@ -127,8 +128,30 @@ void ViewRankings()
         << "#"
         << fighter->Ranking
         << " "
-        << fighter->Name
-        << "\n";
+        << fighter->Name;
+
+        if (fighter->PreviousRanking == 0)
+{
+    std::cout << " (NEW)";
+}
+else if (fighter->Ranking < fighter->PreviousRanking)
+{
+    std::cout << " (UP "
+              << fighter->PreviousRanking - fighter->Ranking
+              << ")";
+}
+else if (fighter->Ranking > fighter->PreviousRanking)
+{
+    std::cout << " (DOWN "
+              << fighter->Ranking - fighter->PreviousRanking
+              << ")";
+}
+else
+{
+    std::cout << " (UNCHANGED)";
+}
+
+        std::cout<< "\n";
 
         std::cout
         << "Record : "
