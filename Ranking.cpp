@@ -179,7 +179,22 @@ else
         << "--------------------------------------\n";
     }
 
-   
+    std::cout << "\n===== TITLE CONTENDERS =====\n\n";
+
+    int contenderCount = 0;
+    for (Fighter* fighter : Rankings)
+    {
+        if (fighter->Ranking >= 2 && fighter->Ranking <= 4)
+        {
+            std::cout << "#" << fighter->Ranking
+                  << " " << fighter->Name << "\n";
+            contenderCount++;
+        }
+    }
+   if (contenderCount == 0)
+    {
+        std::cout << "No title contenders available yet.\n";
+    }
 }
 
 
