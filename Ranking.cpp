@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 std::vector <Fighter*> Rankings;
 
 
@@ -201,16 +202,39 @@ else
 
 Match SelectMatch()
 {
-    Match match;
+    Match match = {-1, -1};
+
+    if (roster.size() < 2)
+    {
+        return match;
+    }
+
+    UpdateRankings();
 
     match.Fighter1 = rand() % roster.size();
 
-    do
-    {
-        match.Fighter2 = rand() % roster.size();
-    }
-    while(match.Fighter1 == match.Fighter2);
+    int bestOpponent = -1;
+    int smallestRankDifference = roster.size();
 
+    for (int i = 0; i < roster.size(); i++)
+    {
+        if (i == match.Fighter1)
+        {
+            continue;
+        }
+
+        int rankDifference = abs(
+            roster[match.Fighter1].Ranking - roster[i].Ranking
+        );
+
+        if (rankDifference < smallestRankDifference)
+        {
+            smallestRankDifference = rankDifference;
+            bestOpponent = i;
+        }
+    }
+
+    match.Fighter2 = bestOpponent;
     return match;
 }
 
