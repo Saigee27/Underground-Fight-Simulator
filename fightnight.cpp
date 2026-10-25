@@ -53,7 +53,7 @@ void FightNight()
         BreakMenu();
         int finalWinner = RunFinal(semifinal1Winner, semifinal2Winner);
         GrandPrixChampion = finalWinner;
-        GPFinished = true;
+        GrandPrixFinished = true;
         UpdateRankings();
         ChampionCommentary(roster[GrandPrixChampion]);
         return;

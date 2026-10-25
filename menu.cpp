@@ -6,6 +6,7 @@
 #include "Ranking.h"
 #include "fight-history.h"
 #include "Timeline.h"
+#include "RankedFightNights.h"
 #include <iostream>
 
 void menu()
@@ -35,7 +36,7 @@ void menu()
         else
         {
             std::cout<<"1. View Roster\n";
-            std::cout<<"2. Fight Night\n";
+            std::cout<<"2. Ranked Fight Night\n";
             std::cout<<"3. Official Rankings\n";
             std::cout<<"4. Grand Prix History\n";
             std::cout<<"5. View Fight History\n";
@@ -84,7 +85,7 @@ void menu()
                 break;
 
                 case 2:
-                FightNight();
+                RankedFightNight();
                 break;
 
                 case 3:

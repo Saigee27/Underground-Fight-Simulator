@@ -7,10 +7,6 @@
 
 std::vector <Fighter*> Rankings;
 
-
-
-
-
 double CalculateOpponentStrength(const Fighter& opponent)
 {
     if (opponent.Ranking <= 0)
@@ -18,7 +14,6 @@ double CalculateOpponentStrength(const Fighter& opponent)
 
     return 100.0 / opponent.Ranking;
 }
-
 
 double CalculateWinQuality(const FightResult& result)
 {
@@ -192,6 +187,7 @@ else
             contenderCount++;
         }
     }
+    std::cout << "\n===== ===== ===== ===== =====\n\n";
    if (contenderCount == 0)
     {
         std::cout << "No title contenders available yet.\n";
